@@ -1,0 +1,11 @@
+manifest.json
+     │
+     ├── name → FocusFlow
+     ├── version → 1.0.0
+     ├── description → what it does
+     │
+     └── action
+           │
+           └── default_popup
+                    │
+                    └── index.html

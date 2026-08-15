@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+body{
+    background-color: black;
+    color: aliceblue;
+    padding: 20px;
+}
+
+
+input{
+    display: block;
+    margin-top: 5px;
+    height: 35px;
+    width: 40%;
+    padding: 5px;
+    border: none;
+}
+
+.submitbtn{
+    margin-top: 5px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.profile{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: red;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.card{
+    height: 200px;
+    width: 200px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: aqua;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+}

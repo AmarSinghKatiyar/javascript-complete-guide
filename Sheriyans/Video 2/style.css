@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+body{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 200px;
+    font-size: 50px;
+    font-weight: bold;
+    background-color: black;
+    color: aliceblue;
+    overflow: hidden;
+}
+.main{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: aquamarine;
+    transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    border-radius: 50%;
+}
+/* 
+#choose{
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+} */

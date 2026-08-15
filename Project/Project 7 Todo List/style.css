@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.outter {
+    text-align: center;
+    padding: 40px;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+input {
+    padding: 10px 80px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 10px;
+    color: white;
+    background-color: rgb(90, 90, 214);
+    border-radius: 5px;
+
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    background-color: gainsboro;
+    padding: 7px;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 8px
+
+}
+p{
+    display: flex;
+    align-items: center;
+}
+
+.deletebtn {
+    background-color: rgb(207, 59, 59);
+    padding: 8px 14px;
+    border-radius: 5px;
+
+}

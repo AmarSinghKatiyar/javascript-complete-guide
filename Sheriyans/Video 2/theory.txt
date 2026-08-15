@@ -1,0 +1,31 @@
+part 1
+
+what is dom?how does it represent the html structure?
+dom stands for document object model and its element represent the node of the structure and it represent html document as tree structure
+also it has window->document->html->head and body->more and morealso in css it has dom called cssom and in js it is ast.
+
+name the different types of nodes in dom.
+document node,text node,element node,etc.
+
+difference between element node and text node.
+
+what does getelemntBy ClassName return ? is it an array?
+no its not an array but it is most similar to it ,it always return a node list called HtmlCollection.
+
+select all <li> elements and print their text using a loop.
+
+difference between innnertext,textContent and innerHtml.
+textContent is more secure and very much faster way of changing any text also it is the new way of changing any text , and innnertext but both 
+do same work and dont take tag as input,
+but innnertext is old method of changing any text also not secure and not faster time taking,
+but innerHtml tak tag as input.
+
+
+what does createElemnt do and what does it return ?
+createElemnt create a new element or say tag in html document and return a node of that name like document.createElemnt("h1") it create an 
+element of name h1 and return a node of h1
+
+difference between appendchild and prependchild 
+appendchild add elemnt in at last position and prependchild add the element at beginning.
+
+==============================================================================================================================================================

@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body{
+    padding: 20px;
+    background-color: black;
+    color: aliceblue;
+}
+span{
+    color: red;
+    font-size: 7px;
+    display: none;
+    font-weight: bold;
+}
+input{
+    height: 45px;
+    width: 30%;
+    border: 3px solid rgb(146, 9, 196);
+    border-radius: 5px;
+}
+
+.box{
+    height: 400px;
+    width: 500px;
+    background-color: rgb(7, 163, 163);
+    margin-top: 10px;
+    color: aliceblue;
+    padding: 50px;
+    padding-top: 100px;
+    padding-left: 90px;
+    line-height: 40px;
+    border-radius: 50%;
+    display: none;
+}

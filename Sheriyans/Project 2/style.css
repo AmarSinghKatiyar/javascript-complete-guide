@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    /* height: 100%;
+    width: 100%; */
+    background-color: black;
+    padding: 21% 35%;
+}
+.inp{
+    display: none;
+}
+.btn{
+    /* height: 50px;
+    width: 360px; */
+    display: inline-block;
+    background-color: aquamarine;
+    color: black;
+    text-align: center;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+}
+.btn h1{
+    max-resolution: 0;
+    font-size: inherit;
+}

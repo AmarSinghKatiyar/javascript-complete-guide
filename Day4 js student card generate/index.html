@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Card Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Form -->
+
+    <form id="studentForm">
+
+        <h2>Student Registration</h2>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter Name"
+        >
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter Email"
+        >
+
+        <input
+            type="number"
+            id="age"
+            placeholder="Enter Age"
+        >
+
+        <select id="course">
+
+            <option value="">Select Course</option>
+
+            <option>MERN Stack</option>
+
+            <option>Java Full Stack</option>
+
+            <option>Python</option>
+
+            <option>Data Science</option>
+
+        </select>
+
+        <button type="submit">
+            Generate Card
+        </button>
+
+    </form>
+
+
+
+
+
+    <!-- Card -->
+
+    <div class="card">
+
+        <div class="avatar">
+            👤
+        </div>
+
+        <h2>Student Card</h2>
+
+        <p>
+            <strong>Name :</strong>
+            <span id="cardName">Not Available</span>
+        </p>
+
+        <p>
+            <strong>Email :</strong>
+            <span id="cardEmail">Not Available</span>
+        </p>
+
+        <p>
+            <strong>Age :</strong>
+            <span id="cardAge">--</span>
+        </p>
+
+        <p>
+            <strong>Course :</strong>
+            <span id="cardCourse">Not Selected</span>
+        </p>
+
+    </div>
+<script src="script.js"></script>
+</div>
+
+</body>
+</html>

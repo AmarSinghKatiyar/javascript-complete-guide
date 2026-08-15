@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <h1>Student Admission Form</h1>
+        <div class="innerfrom">
+            <form>
+                <h3>Full Name</h3>
+                <input type="text" placeholder="Enter your full name">
+                <h3>Email</h3>
+                <input type="email" placeholder="Enter your email">
+                <h3>Admission Password</h3>
+                <input type="text" placeholder="Create a Password">
+                <h3>Age</h3>
+                <input type="number" placeholder="Enter your age">
+                <h3>Date of Birth</h3>
+                <input type="date">
+                <h3>Preferred Interview Time</h3>
+                <input type="time">
+                <div class="gender-group">
+                    <h3>Select</h3>
+                    <input type="radio" id="male" name="gender">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender">
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender">
+                    <label for="other">Other</label>
+
+                </div>
+
+                <h3>Select Course</h3>
+                <select name="Select Course" id="Course">
+                    <option value="" selected disabled>Select Course</option>
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="BBA">BBA</option>
+                    <option value="BCA">BCA</option>
+                    <option value="MCA">MCA</option>
+                </select>
+
+                <h3>Address</h3>
+                <textarea name="" id="">Enter your complete address</textarea>
+
+                <h3>Skills</h3>
+                <input type="checkbox" name="skills[]" id="HTML">
+                <label for="html">HTML</label>
+                <input type="checkbox" name="skills[]" id="CSS">
+                <label for="CSS">CSS</label>
+                <input type="checkbox" name="skills[]" id="JAVASCRIPT">
+                <label for="JAVASCRIPT">JAVASCRIPT</label>
+                <input type="checkbox" name="skills[]" id="REACT">
+                <label for="REACT">REACT</label>
+
+                <h3>Upload Student Photo</h3>
+                <input type="file">
+                <p>No File Choosen</p>
+
+                <input type="checkbox" id="termsandcondition" required>
+                <label for="termsandcondition">I agree to the terms and conditions.</label>
+
+                <button>Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
