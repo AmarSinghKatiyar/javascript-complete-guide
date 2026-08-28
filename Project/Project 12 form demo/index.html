@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Admission Form</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="main">
+
+        <h1 class="mainh1">Student Admission Form</h1>
+
+        <div class="innerfrom">
+
+            <form>
+
+                <div class="detail">
+
+                    <h3>Full Name</h3>
+                    <input
+                        type="text"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                    <h3>Email</h3>
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                    <h3>Admission Password</h3>
+                    <input
+                        type="password"
+                        placeholder="Create a Password"
+                        required
+                    >
+
+                    <h3>Age</h3>
+                    <input
+                        type="number"
+                        placeholder="Enter your age"
+                        min="1"
+                        max="100"
+                        required
+                    >
+
+                    <h3>Date of Birth</h3>
+                    <input type="date" required>
+
+                    <h3>Preferred Interview Time</h3>
+                    <input type="time" required>
+
+                </div>
+
+
+                <div class="gender-group">
+
+                    <h3>Select Gender</h3>
+
+                    <input
+                        type="radio"
+                        id="male"
+                        name="gender"
+                        value="Male"
+                        required
+                    >
+                    <label for="male">Male</label>
+
+                    <input
+                        type="radio"
+                        id="female"
+                        name="gender"
+                        value="Female"
+                    >
+                    <label for="female">Female</label>
+
+                    <input
+                        type="radio"
+                        id="other"
+                        name="gender"
+                        value="Other"
+                    >
+                    <label for="other">Other</label>
+
+                </div>
+
+
+                <div class="course">
+
+                    <h3>Select Course</h3>
+
+                    <select id="Courseid" required>
+
+                        <option value="" selected disabled>
+                            Select Course
+                        </option>
+
+                        <option value="B.Tech">B.Tech</option>
+                        <option value="BBA">BBA</option>
+                        <option value="BCA">BCA</option>
+                        <option value="MCA">MCA</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="address">
+
+                    <h3>Address</h3>
+
+                    <textarea
+                        id="address"
+                        placeholder="Enter your complete address"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="skills">
+
+                    <h3>Skills</h3>
+
+                    <input
+                        type="checkbox"
+                        id="HTML"
+                        value="HTML"
+                    >
+                    <label for="HTML">HTML</label>
+
+                    <input
+                        type="checkbox"
+                        id="CSS"
+                        value="CSS"
+                    >
+                    <label for="CSS">CSS</label>
+
+                    <input
+                        type="checkbox"
+                        id="JAVASCRIPT"
+                        value="JAVASCRIPT"
+                    >
+                    <label for="JAVASCRIPT">JAVASCRIPT</label>
+
+                    <input
+                        type="checkbox"
+                        id="REACT"
+                        value="REACT"
+                    >
+                    <label for="REACT">REACT</label>
+
+                </div>
+
+
+                <div class="upload">
+
+                    <h3>Upload Student Photo</h3>
+
+                    <input
+                        type="file"
+                        class="fileinp"
+                        accept="image/*"
+                    >
+
+                    <button
+                        class="uploadbtn"
+                        type="button"
+                    >
+                        Upload Photo
+                    </button>
+
+                    <p class="filename">
+                        No File Chosen
+                    </p>
+
+                </div>
+
+
+                <div class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="termsandcondition"
+                        required
+                    >
+
+                    <label for="termsandcondition">
+                        I agree to the terms and conditions.
+                    </label>
+
+                </div>
+
+
+                <button
+                    class="submitbtn"
+                    type="submit"
+                >
+                    Submit Application
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="middle">
+
+            <h3 class="middlehead">
+                Submitted Application
+            </h3>
+
+        </div>
+
+
+        <div class="maincard">
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

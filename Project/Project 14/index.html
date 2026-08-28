@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Student Attendance Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Attendance Manager</h1>
+
+      
+
+
+        <!-- ADD STUDENT -->
+
+        <div class="add-section">
+
+            <h2>Add Student</h2>
+
+            <input
+                type="text"
+                id="studentNameInput"
+                placeholder="Enter student name"
+            >
+
+            <input
+                type="text"
+                id="courseInput"
+                placeholder="Enter course"
+            >
+
+            <button id="addStudentBtn">
+                Add Student
+            </button>
+
+        </div>
+
+
+        <!-- STUDENTS -->
+
+        <div id="studentContainer">
+
+
+            <!-- STUDENT 1 -->
+
+            <div class="student-card">
+
+                <div class="student-info">
+
+                    <h3>
+                        Karan
+                    </h3>
+
+                    <p>
+                        Course: JavaScript
+                    </p>
+
+                    <p class="status">
+                        Status:
+                        <strong>Absent</strong>
+                    </p>
+
+                </div>
+
+                <div class="student-actions">
+
+                    <button class="attendance-btn">
+                        Mark Present
+                    </button>
+
+                    <button class="delete-btn">
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- STUDENT 2 -->
+
+            <div class="student-card">
+
+                <div class="student-info">
+
+                    <h3>
+                        Rahul
+                    </h3>
+
+                    <p>
+                        Course: React
+                    </p>
+
+                    <p class="status">
+                        Status:
+                        <strong>Absent</strong>
+                    </p>
+
+                </div>
+
+                <div class="student-actions">
+
+                    <button class="attendance-btn">
+                        Mark Present
+                    </button>
+
+                    <button class="delete-btn">
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- CONTROLS -->
+
+        <div class="controls">
+
+            <p>
+                Total Students:
+                <strong id="studentCount">2</strong>
+            </p>
+
+            <button id="clearBtn">
+                Clear All Students
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

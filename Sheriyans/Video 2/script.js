@@ -76,16 +76,20 @@
 //     head.textContent = `${val.target.value} Device Selected`;
 // })
 
-let main = document.querySelector(".main");
+// let main = document.querySelector(".main");
 
-main.addEventListener("mouseenter",()=>{
-    main.style.backgroundColor = "#4682B4";
-})
-main.addEventListener("mouseleave",()=>{
-    main.style.backgroundColor = "aquamarine";
-})
+// main.addEventListener("mouseenter",()=>{
+//     main.style.backgroundColor = "#4682B4";
+// })
+// main.addEventListener("mouseleave",()=>{
+//     main.style.backgroundColor = "aquamarine";
+// })
 
-window.addEventListener("mousemove",(val)=>{
-    main.style.top = val.clientY+"px";
-    main.style.left = val.clientX+"px";
-})
+// window.addEventListener("mousemove",(val)=>{
+//     main.style.top = val.clientY+"px";
+//     main.style.left = val.clientX+"px";
+// })
+
+document.querySelector(".nav").addEventListener("click",function(){
+    alert("button clicked run event bubbling") // this is called event bubbling
+});

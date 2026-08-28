@@ -10,23 +10,25 @@
 
 <body>
     <div class="main">
-        <h1>Student Admission Form</h1>
+        <h1 class="mainh1">Student Admission Form</h1>
         <div class="innerfrom">
             <form>
-                <h3>Full Name</h3>
-                <input type="text" placeholder="Enter your full name">
-                <h3>Email</h3>
-                <input type="email" placeholder="Enter your email">
-                <h3>Admission Password</h3>
-                <input type="text" placeholder="Create a Password">
-                <h3>Age</h3>
-                <input type="number" placeholder="Enter your age">
-                <h3>Date of Birth</h3>
-                <input type="date">
-                <h3>Preferred Interview Time</h3>
-                <input type="time">
+                <div class="detail">
+                    <h3>Full Name</h3>
+                    <input type="text" placeholder="Enter your full name">
+                    <h3>Email</h3>
+                    <input type="email" placeholder="Enter your email">
+                    <h3>Admission Password</h3>
+                    <input type="text" placeholder="Create a Password">
+                    <h3>Age</h3>
+                    <input type="number" placeholder="Enter your age">
+                    <h3>Date of Birth</h3>
+                    <input type="date">
+                    <h3>Preferred Interview Time</h3>
+                    <input type="time">
+                </div>
                 <div class="gender-group">
-                    <h3>Select</h3>
+                    <h3>Select Gender</h3>
                     <input type="radio" id="male" name="gender">
                     <label for="male">Male</label>
                     <input type="radio" id="female" name="gender">
@@ -36,37 +38,104 @@
 
                 </div>
 
-                <h3>Select Course</h3>
-                <select name="Select Course" id="Course">
-                    <option value="" selected disabled>Select Course</option>
-                    <option value="B.Tech">B.Tech</option>
-                    <option value="BBA">BBA</option>
-                    <option value="BCA">BCA</option>
-                    <option value="MCA">MCA</option>
-                </select>
+                <div class="course">
+                    <h3>Select Course</h3>
+                    <select name="Select Course" id="Courseid">
+                        <option value="" selected disabled>Select Course</option>
+                        <option value="B.Tech">B.Tech</option>
+                        <option value="BBA">BBA</option>
+                        <option value="BCA">BCA</option>
+                        <option value="MCA">MCA</option>
+                    </select>
+                </div>
 
-                <h3>Address</h3>
-                <textarea name="" id="">Enter your complete address</textarea>
+                <div class="address">
+                    <h3>Address</h3>
+                    <textarea name="" id="address" placeholder="Enter your complete address"></textarea>
+                </div>
 
-                <h3>Skills</h3>
-                <input type="checkbox" name="skills[]" id="HTML">
-                <label for="html">HTML</label>
-                <input type="checkbox" name="skills[]" id="CSS">
-                <label for="CSS">CSS</label>
-                <input type="checkbox" name="skills[]" id="JAVASCRIPT">
-                <label for="JAVASCRIPT">JAVASCRIPT</label>
-                <input type="checkbox" name="skills[]" id="REACT">
-                <label for="REACT">REACT</label>
+                <div class="skills">
+                    <h3>Skills</h3>
+                    <input type="checkbox" name="skills[]" id="HTML">
+                    <label for="html">HTML</label>
+                    <input type="checkbox" name="skills[]" id="CSS">
+                    <label for="CSS">CSS</label>
+                    <input type="checkbox" name="skills[]" id="JAVASCRIPT">
+                    <label for="JAVASCRIPT">JAVASCRIPT</label>
+                    <input type="checkbox" name="skills[]" id="REACT">
+                    <label for="REACT">REACT</label>
+                </div>
 
-                <h3>Upload Student Photo</h3>
-                <input type="file">
-                <p>No File Choosen</p>
+                <div class="upload">
+                    <h3>Upload Student Photo</h3>
+                    <input type="file" class="fileinp">
+                    <button class="uploadbtn" type="button">Upload Photo</button>
+                    <p class="filename">No File Choosen</p>
+                </div>
 
-                <input type="checkbox" id="termsandcondition" required>
-                <label for="termsandcondition">I agree to the terms and conditions.</label>
+                <div class="terms">
+                    <input type="checkbox" id="termsandcondition" required>
+                    <label for="termsandcondition">I agree to the terms and conditions.</label>
+                </div>
 
-                <button>Submit Application</button>
+                <button class="submitbtn" type="submit">Submit Application</button>
             </form>
+        </div>
+        <div class="middle">
+            <h3 class="middlehead">Submitted Application</h3>
+        </div>
+        <div class="maincard">
+            <div class="card">
+                <!-- <div class="image"><img
+                        src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
+                        alt="not available"></div>
+                <div class="cardinner">
+                    <h3>Name</h3>
+                    <h3>Email</h3>
+                    <h3>Admission Password</h3>
+                    <h3>Age</h3>
+                    <h3>Date Of Birth</h3>
+                    <h3>Preferred interview time</h3>
+                    <h3>Gender</h3>
+                    <h3>Course</h3>
+                    <h3>Address</h3>
+                    <h3>Skills</h3>
+                </div> -->
+            </div>
+            <!-- <div class="card">
+                <div class="image"><img
+                        src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
+                        alt="not available"></div>
+                <div class="cardinner">
+                    <h3>Name</h3>
+                    <h3>Email</h3>
+                    <h3>Admission Password</h3>
+                    <h3>Age</h3>
+                    <h3>Date Of Birth</h3>
+                    <h3>Preferred interview time</h3>
+                    <h3>Gender</h3>
+                    <h3>Course</h3>
+                    <h3>Address</h3>
+                    <h3>Skills</h3>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image"><img
+                        src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
+                        alt="not available"></div>
+                <div class="cardinner">
+                    <h3>Name</h3>
+                    <h3>Email</h3>
+                    <h3>Admission Password</h3>
+                    <h3>Age</h3>
+                    <h3>Date Of Birth</h3>
+                    <h3>Preferred interview time</h3>
+                    <h3>Gender</h3>
+                    <h3>Course</h3>
+                    <h3>Address</h3>
+                    <h3>Skills</h3>
+                </div> 
+            </div> -->
         </div>
     </div>
 

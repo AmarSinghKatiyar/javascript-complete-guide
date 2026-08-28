@@ -29,3 +29,31 @@ difference between appendchild and prependchild
 appendchild add elemnt in at last position and prependchild add the element at beginning.
 
 ==============================================================================================================================================================
+
+event bubbling
+means if we click on a button present in navbar but there is no eventlistner on it then js check or bubble out to its parent and check there if 
+present then that event listner will apply else it check for that parent event if even event is present in that button than also the event of that 
+button will apply and next parent event will also apply
+like button sign in in navbar then -> check parent nav bar - > then check body -> html .
+
+jab bhi hum click karte hai ya koi event raise karte hai to aapka jo event flow do phases mein chalta hai:
+phase1:- event top level element se niche ki tarf aayega
+phase2:- event raised element se parent ki tarf jayega
+
+aur pahale pahse 1 hoti hai
+pahale outter se inner jata hai using captua phase on but by default it will turn off hence event direction goes from outter to inner direction 
+And if capture phases off then the event direction from outer to inner and it will not perform any action but when the capture phase is on then 
+the outer event will run then after the left event will run and if the capture phase is off then the direction goes to the targeted 
+element and then after that targeted element the event bubbling will start 
+
+Bubbling face direction is from inward to outward and 
+capture phase direction is from outward to inward and if the capture phase is on of any event then that will run first then the 
+bubbling will start
+
+to on captua phase use true like this 
+document.querySelector(".nav").addEventListener("click",function(){
+    alert("button clicked run event bubbling") // this is called event bubbling
+},true);
+
+
+
