@@ -55,5 +55,11 @@ document.querySelector(".nav").addEventListener("click",function(){
     alert("button clicked run event bubbling") // this is called event bubbling
 },true);
 
+first capturing is start from outter to inward then after reaching to last position it start bubbling from inward to outward
 
+3. Event delegation
+
+Event delegation means:
+
+Instead of adding an event listener to every child, add one listener to their parent and use bubbling to determine which child was clicked.
 
