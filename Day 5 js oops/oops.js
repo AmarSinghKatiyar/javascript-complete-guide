@@ -48,7 +48,7 @@
 
 //OOPS O STAND FOR OBJECT AND OBJECT CONTAINS 2 THINGS PROPERTIES AND METHOD 
 //PROBLEM = GLOBAL VARIABLE POLUTION AND 
-//SOLUTION IS NAMESPACE AMANGEMENT
+//SOLUTION IS NAMESPACE MANGEMENT
 
 // let laptop={
 //     name:"lenovo",
@@ -114,3 +114,39 @@
 //eventlistner take 3 argeument by default 3 argument is false
 
 //capturing->target->bubbling
+
+
+
+//this tells about the what is the current context, the call,bind and apply are tye method that are use to explicitly set the value of 
+// this keyword inside function
+//everything in js is an object
+
+
+// let obj1={
+//     fullName:"Amar"
+// }
+
+// let obj2={
+//     city:"Lucknow",
+//     _proto_:obj1
+// }
+// let obj3={
+//     age:31,
+//     _proto_:obj2
+// }
+
+
+// let str = "fbhvbfhfhvlbf";
+
+// String.prototype.amar = function () {
+//     return "hello";
+// };
+
+// console.log(str.amar());
+
+window.addEventListener("storage",(e)=>{
+    console.log("storage updated");
+    console.log(e);
+    alert("Storage updated");
+    
+})
