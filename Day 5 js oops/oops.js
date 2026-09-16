@@ -144,9 +144,9 @@
 
 // console.log(str.amar());
 
-window.addEventListener("storage",(e)=>{
-    console.log("storage updated");
-    console.log(e);
-    alert("Storage updated");
+// window.addEventListener("storage",(e)=>{
+//     console.log("storage updated");
+//     console.log(e);
+//     alert("Storage updated");
     
-})
+// })
