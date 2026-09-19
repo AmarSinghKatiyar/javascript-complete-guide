@@ -148,29 +148,29 @@
 // });
 
 // promises
-const firstpromises = new Promise(function(resolve,reject){
-    // console.log("first promises initiated")
-    let error=true;
-    if(!error){
-        resolve({"name":"amar"})
-    }
-    else{
-        reject("something went wrong");
-    }
-})
-firstpromises.then(function(obj){
-    console.log("promises resolved");
-    console.log(obj);
-    return obj.name;
-}).then(function(value){
-    console.log(value);
-})
-.catch(function(err){
-    console.log(err); 
-})
-.finally(function(){
-    console.log("complete whole promises");
-})
+// const firstpromises = new Promise(function(resolve,reject){
+//     // console.log("first promises initiated")
+//     let error=true;
+//     if(!error){
+//         resolve({"name":"amar"})
+//     }
+//     else{
+//         reject("something went wrong");
+//     }
+// })
+// firstpromises.then(function(obj){
+//     console.log("promises resolved");
+//     console.log(obj);
+//     return obj.name;
+// }).then(function(value){
+//     console.log(value);
+// })
+// .catch(function(err){
+//     console.log(err); 
+// })
+// .finally(function(){
+//     console.log("complete whole promises");
+// })
 
 // // console.log(firstpromises);
 // firstpromises.then(function(){
@@ -179,3 +179,61 @@ firstpromises.then(function(obj){
 //     console.log("promises failed");
     
 // })
+
+
+//we need callback if we need to maintain the flow of excution of code of function then i required callback
+//problems occured in callback
+//callback hell:- passing callback inside callback it leads to messy code leads to problem in reading
+//invetrsion control:-i dont have control on function the control of one function is gone to completely to another 
+// function callback functiion
+
+// function orderebooked() {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log("order booked");
+//             resolve();
+//         }, 2000);
+//     });
+// }
+
+// function vieworder() {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log("view order");
+//             resolve();
+//         }, 2000);
+//     });
+// }
+
+// function inventaroyanalysis() {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log("Inventory analysis");
+//             resolve();
+//         }, 2000);
+//     });
+// }
+
+// function orderconfirmed() {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log("order confirmed");
+//             resolve();
+//         }, 2000);
+//     });
+// }
+
+// orderebooked()
+//     .then(function () {
+//         return vieworder();
+//     })
+//     .then(function () {
+//         return inventaroyanalysis();
+//     })
+//     .then(function () {
+//         return orderconfirmed();
+//     })
+//     .catch(function () {
+//         console.log("something went wrong");
+//     });
+
