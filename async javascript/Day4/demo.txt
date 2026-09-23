@@ -1,0 +1,5 @@
+async and await is a syntatical sugar
+it use 2 keyword async and await
+we can make a function async if we use async before that function 
+and we only use await keyword only inside a async function else it gives error
+async function always return a promise 
