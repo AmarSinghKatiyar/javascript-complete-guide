@@ -5,5 +5,6 @@ const promise = new Promise((resolve,reject)=>{
 })
 
 promise.then(function(rawdata){
+    console.log(rawdata);
     
 })
