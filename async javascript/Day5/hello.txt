@@ -1,0 +1,477 @@
+debouncing and Throttling :- performance optimization and rate limiting
+debouncing ensure that a certain amount of time has passed without the event occuring again and again
+throttling ensure that a event will only execute if the given specified amout of time has passed no matter 
+how many times the event will occur in that specified amout of time
+
+=================================================================================================================================================
+
+
+Debouncing and Throttling — Performance Optimization and Rate Limiting
+
+Debouncing:
+Debouncing ensures that a function executes only after a specified amount of time has passed since the last event occurred. 
+If the event keeps occurring, the timer keeps resetting.
+
+Example:
+In a search box, when the user keeps typing, the API request is not made for every keystroke. The request is made only after 
+the user stops typing for a specified amount of time.
+
+Debounce = "Wait until the event stops happening."
+
+Common use cases:
+- Search input/API calls
+- Form validation
+- Window resize
+- Auto-save
+
+
+Debouncing — Search Example
+
+Case 1: Without Debouncing
+
+User types:
+H → He → Hel → Hell → Hello
+
+API calls:
+H     → API call → Search DB
+He    → API call → Search DB
+Hel   → API call → Search DB
+Hell  → API call → Search DB
+Hello → API call → Search DB
+
+Problem:
+An API request is made for every character typed.
+
+This can cause:
+- Too many API requests
+- Unnecessary database queries
+- Higher server load
+- Poor performance
+
+So, this is bad optimization.
+
+
+Case 2: Wait Until the User Has Typed the Full Word
+
+The idea is to wait until the user has completely typed the word and then make the API call.
+
+Example:
+
+User types:
+H → He → Hel → Hell → Hello
+
+Then call the API only for:
+Hello → API call → Search DB
+
+This reduces unnecessary API calls and improves performance.
+
+However, the application does not know when the user has "completely" typed the word.
+The user may continue typing, so we need a better way to decide when to make the API call.
+
+
+Case 3: Debouncing — Wait for a Specific Amount of Time
+
+We wait for a specific amount of time, for example 800ms.
+
+User types:
+H → He → Hel → Hell → Hello
+
+Every time the user types something:
+- Start an 800ms timer.
+- If the user types again before 800ms, cancel the previous timer.
+- Start a new 800ms timer.
+- When the user stops typing for 800ms, make the API call.
+
+Example:
+
+User types "H"
+        ↓
+     Wait 800ms
+        ↓
+User types "He"
+        ↓
+   Reset timer
+        ↓
+     Wait 800ms
+        ↓
+User types "Hel"
+        ↓
+   Reset timer
+        ↓
+     Wait 800ms
+        ↓
+User types "Hello"
+        ↓
+   Reset timer
+        ↓
+User stops typing
+        ↓
+Wait 800ms
+        ↓
+API call → Search DB
+
+
+This is Debouncing.
+
+Definition:
+
+Debouncing ensures that the function executes only after a specified amount
+of time has passed without the event occurring again.
+
+
+Why use Debouncing?
+
+- Reduces unnecessary API calls
+- Reduces database queries
+- Reduces server load
+- Improves application performance
+- Provides a better user experience
+
+
+Simple Example:
+
+Without Debouncing:
+Every keystroke → API call
+
+With Debouncing:
+User stops typing → Wait 800ms → API call
+
+
+Important:
+
+The 800ms is just an example.
+It could be 300ms, 500ms, 800ms, 1000ms, etc., depending on the application
+and the desired user experience.
+
+
+
+===============================================================================================================================================
+
+
+Throttling:
+Throttling ensures that a function executes at most once during a specified time interval, no matter how many times the event
+occurs during that interval.
+
+Example:
+If we set a throttle interval of 1000ms, the function can execute at most once every 1000ms, even if the event occurs many 
+times during that interval.
+
+Throttle = "Execute at a controlled rate."
+
+Common use cases:
+- Scroll events
+- Mouse movement
+- Window resizing
+- Button clicks
+- API rate limiting
+
+
+THROTTLING — REAL-WORLD EXAMPLES
+
+Throttling is useful when an event can happen many times, but we want to allow the function to execute only at a controlled frequency.
+
+Throttle = "Execute at a controlled rate."
+
+
+CASE 1: REFRESH BUTTON WITHOUT THROTTLING
+
+Suppose we have a button that refreshes data from an API.
+
+The user clicks the button multiple times:
+
+Click → API call
+Click → API call
+Click → API call
+Click → API call
+Click → API call
+
+Every click creates a new API request.
+
+Problem:
+
+The user may accidentally or intentionally click the button many times.
+
+This can cause:
+
+- Too many API requests
+- Unnecessary server load
+- Duplicate requests
+- Increased network usage
+- Poor performance
+- Possible rate-limit problems
+
+For example:
+
+User clicks Refresh 10 times
+          ↓
+      10 API calls
+          ↓
+      Server receives
+      10 requests
+
+This is unnecessary if the application only needs to refresh the data occasionally.
+
+
+CASE 2: REFRESH BUTTON WITH THROTTLING
+
+We can use throttling to control how frequently the refresh function can execute.
+
+Suppose we set a throttle interval of 5 seconds.
+
+First click
+    ↓
+API call ✓
+    ↓
+5 second cooldown
+    ↓
+Additional clicks during 5 seconds
+    ↓
+Ignored
+    ↓
+After 5 seconds
+    ↓
+Next click can execute
+
+
+Example:
+
+Time:     0s    1s    2s    3s    4s    5s    6s
+
+Clicks:   ↑     ↑     ↑     ↑     ↑     ↑
+          ↓
+Execute:  ✓                              ✓
+
+The first click executes immediately.
+
+Any additional clicks during the 5-second throttle period do not execute the function.
+
+After 5 seconds, another click can execute the function.
+
+
+RESULT:
+
+10 user clicks
+      ↓
+Throttle
+      ↓
+Only controlled API requests
+
+
+CASE 3: YOUTUBE / LIVE CHAT SLOW MODE
+
+A similar concept can be used in live chat systems to prevent users from sending messages too quickly.
+
+Suppose a chat system has a 5-second slow mode.
+
+Without rate limiting:
+
+User:
+
+Hello       → Send
+Hi          → Send
+Everyone    → Send
+How are you? → Send
+Spam        → Send
+Spam        → Send
+Spam        → Send
+
+A user can send many messages in a very short amount of time.
+
+This can result in:
+
+- Chat spam
+- Too many messages
+- Poor user experience
+- Increased server load
+- Other users' messages becoming difficult to see
+
+
+WITH THROTTLING / RATE LIMITING
+
+Suppose the user can send only one message every 5 seconds.
+
+0s  → "Hello"          ✓ Sent
+1s  → "Hi"             ✗ Blocked
+2s  → "Everyone"       ✗ Blocked
+3s  → "How are you?"   ✗ Blocked
+4s  → "Spam"           ✗ Blocked
+5s  → "Hello again"    ✓ Sent
+
+The user can continue typing, but the system controls how frequently messages can be sent.
+
+Message
+   ↓
+Check rate limit
+   ↓
+Allowed?
+  ↙   ↘
+Yes    No
+ ↓      ↓
+Send   Block/Wait
+
+This helps prevent users from flooding the chat with messages.
+
+NOTE:
+
+In real applications, chat systems often implement this as server-side rate limiting rather than relying only on client-side JavaScript throttling.
+
+
+JAVASCRIPT THROTTLING IMPLEMENTATION
+
+function throttle(callback, delay) {
+  let lastCall = 0;
+
+  return function (...args) {
+    const now = Date.now();
+
+    if (now - lastCall >= delay) {
+      lastCall = now;
+      callback.apply(this, args);
+    }
+  };
+}
+
+
+EXAMPLE: REFRESH BUTTON
+
+function refreshData() {
+  console.log("Fetching latest data...");
+
+  // API request
+  fetch("/api/data");
+}
+
+const throttledRefresh = throttle(refreshData, 5000);
+
+refreshButton.addEventListener("click", throttledRefresh);
+
+
+NOW:
+
+Click
+ ↓
+API call ✓
+
+Click immediately again
+ ↓
+Blocked ✗
+
+Click again after 5 seconds
+ ↓
+API call ✓
+
+
+EXAMPLE: CHAT MESSAGE RATE LIMITING
+
+function sendMessage(message) {
+  console.log("Sending:", message);
+
+  // Send message to server
+}
+
+const throttledSendMessage = throttle(sendMessage, 5000);
+
+sendButton.addEventListener("click", () => {
+  throttledSendMessage(input.value);
+});
+
+
+This allows the client to send at most one message every 5 seconds.
+
+However, for a real chat application, server-side rate limiting is essential because users can bypass client-side JavaScript restrictions.
+
+
+DEBOUNCING VS THROTTLING
+
+DEBOUNCING
+
+User keeps performing an action
+        ↓
+Timer keeps resetting
+        ↓
+User stops
+        ↓
+Wait
+        ↓
+Execute
+
+
+Example:
+
+Search box
+
+Typing → Typing → Typing → Typing
+                              ↓
+                         Stop typing
+                              ↓
+                          API call
+
+Debounce = "Wait until the activity stops."
+
+
+THROTTLING
+
+Event → Execute
+         ↓
+      Cooldown
+         ↓
+Events during cooldown → Block/Ignore
+         ↓
+Cooldown ends
+         ↓
+Next event → Execute
+
+
+Example:
+
+Refresh button
+
+Click → API call ✓
+Click → Block ✗
+Click → Block ✗
+Click → Block ✗
+5 seconds pass
+Click → API call ✓
+
+Throttle = "Control how frequently the function executes."
+
+
+QUICK COMPARISON
+
+Scenario                         Technique
+------------------------------------------------------------
+Search while typing              Debouncing
+Auto-save after typing           Debouncing
+Scroll event                     Throttling
+Refresh button                   Throttling
+Live chat message rate           Rate limiting / Throttling concept
+Mouse movement                   Throttling
+
+
+EASY WAY TO REMEMBER
+
+Debouncing:
+"Wait until the user stops."
+
+Throttling:
+"Don't let the function run too frequently."
+
+
+Debouncing delays execution until the activity stops, while throttling limits how often execution can happen during continuous activity.
+
+
+===================================================================================================================================================
+
+IN SHORT
+
+Difference:
+
+Debouncing → Wait for the event to stop occurring, then execute.
+Throttling → Execute at a controlled frequency regardless of how many times the event occurs.
+
+Easy way to remember:
+Debouncing = "Wait..."
+Throttling = "Slow down."
+
+In short:
+Debouncing waits for the event to stop occurring, while throttling limits how frequently the event handler can execute.
