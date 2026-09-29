@@ -1,0 +1,47 @@
+important fundamental topics
+
+hoisting and tdz
+dynamic typing and data types in js like primitive and non primitive
+type cohesion and type conversion
+terniary operator
+why NAN type is number
+function experation and hoisting
+rest and spread parameter
+arrow function
+IFEE function immidiately invoked function experation
+higher order function
+lexical scoping and closure
+pure and impure function
+slice and splice difference
+how map is an higher order function
+difference between foreach and map
+difference between filter and fine
+define reduce
+deap copy vs shallow copy and how to create both
+destructring and object
+optional channing in object
+2 ways to access properties in object
+
+
+DOM topics
+what is dom and how to select element in dom
+difference between textcontent,innertext,innerHTML
+what are eventlistner and why are we used
+what is better addeventlistner or onclick and why
+form basic and form and form validation
+dynamic dom manipulation
+this keyword in js
+call,bind and apply in js
+event bubbling and capturing
+local storage and session storage and cookies difference between them
+difference between synchronus and async synchronus programming
+settimeout vs setinterval
+callback and callback hell 2 issue  1 inversion control
+promises basic
+fetch api return rawdata.json
+promises api all,many,every,any
+
+async and await 
+handing error using then and catch and try catch and async and await
+throttling and debouncing and Execution of code with example
+execution context 1>global execution context and functional context
