@@ -2941,6 +2941,376 @@ The roadmap includes:
 * `call()`, `apply()`, and `bind()`
 * Debouncing
 * Throttling
+* Starvation
+
+# Microtask Starvation
+
+Microtask starvation happens when microtasks continuously create more microtasks, preventing the event loop from moving on to the next task/macrotask.
+
+## 100 Microtasks Are Not Necessarily Starvation
+
+Suppose the microtask queue contains 100 Promise callbacks:
+
+```javascript
+for (let i = 0; i < 100; i++) {
+    Promise.resolve().then(() => {
+        console.log("Microtask");
+    });
+}
+
+setTimeout(() => {
+    console.log("Timer");
+}, 0);
+```
+
+This is **not necessarily starvation**.
+
+The event loop can process:
+
+```text
+Current JavaScript
+       ↓
+100 Microtasks
+       ↓
+Microtask queue becomes empty
+       ↓
+Timer task
+```
+
+Eventually, the microtask queue becomes empty, so the event loop can continue to the timer.
+
+The important point is:
+
+> **A large microtask queue is not automatically starvation.**
+
+---
+
+# Infinite Microtask Chain
+
+Starvation occurs when processing a microtask continuously adds another microtask.
+
+Example:
+
+```javascript
+function createMicrotask() {
+    Promise.resolve().then(() => {
+        console.log("Microtask");
+
+        createMicrotask();
+    });
+}
+
+createMicrotask();
+
+setTimeout(() => {
+    console.log("Timer");
+}, 0);
+```
+
+The important part is:
+
+```text
+Microtask 1
+    ↓
+creates Microtask 2
+    ↓
+Microtask 2
+    ↓
+creates Microtask 3
+    ↓
+Microtask 3
+    ↓
+creates Microtask 4
+    ↓
+...
+```
+
+The microtask queue never becomes empty.
+
+Therefore, the timer may never get a chance to execute.
+
+```text
+┌─────────────────────────────┐
+│        Microtask Queue      │
+│                             │
+│  Microtask                  │
+│      ↓                      │
+│  creates another            │
+│      ↓                      │
+│  Microtask                  │
+│      ↓                      │
+│  creates another            │
+│      ↓                      │
+│  Microtask                  │
+│      ↓                      │
+│     ...                     │
+└─────────────────────────────┘
+              ↓
+       Never reaches
+              ↓
+       Timer / next task
+```
+
+This is **microtask starvation**.
+
+---
+
+# Why Does This Cause Starvation?
+
+The event loop generally processes the current task and then performs a microtask checkpoint.
+
+During that checkpoint, newly queued microtasks are also processed.
+
+For example:
+
+```javascript
+Promise.resolve().then(() => {
+    console.log("A");
+
+    Promise.resolve().then(() => {
+        console.log("B");
+    });
+});
+```
+
+The second Promise callback is added while microtasks are already being processed.
+
+Conceptually:
+
+```text
+Microtask A
+    ↓
+creates Microtask B
+    ↓
+Microtask B
+```
+
+The event loop does not simply say:
+
+> "I processed the original microtask, so now I must immediately run the timer."
+
+It continues processing the microtask queue.
+
+If every microtask keeps adding another microtask, the queue can remain non-empty indefinitely.
+
+---
+
+# Finite vs Infinite Microtask Creation
+
+## Case 1 — Finite
+
+```javascript
+function createTasks(count) {
+    if (count === 0) return;
+
+    Promise.resolve().then(() => {
+        console.log(count);
+        createTasks(count - 1);
+    });
+}
+
+createTasks(100);
+
+setTimeout(() => {
+    console.log("Timer");
+}, 0);
+```
+
+The chain eventually ends:
+
+```text
+Microtask
+   ↓
+Microtask
+   ↓
+Microtask
+   ↓
+...
+   ↓
+100th Microtask
+   ↓
+Queue empty
+   ↓
+Timer executes
+```
+
+This can delay the timer, but it is not an infinite starvation situation.
+
+---
+
+## Case 2 — Infinite
+
+```javascript
+function forever() {
+    Promise.resolve().then(() => {
+        forever();
+    });
+}
+
+forever();
+
+setTimeout(() => {
+    console.log("Timer");
+}, 0);
+```
+
+Conceptually:
+
+```text
+Microtask
+   ↓
+new Microtask
+   ↓
+new Microtask
+   ↓
+new Microtask
+   ↓
+new Microtask
+   ↓
+...
+```
+
+The microtask queue keeps receiving more work.
+
+The event loop therefore cannot reach the timer task.
+
+This is **microtask starvation**.
+
+---
+
+# Important Interview Point
+
+Do not say:
+
+> "100 microtasks cause starvation."
+
+Instead say:
+
+> **A large number of microtasks can delay other tasks, but starvation occurs when microtasks continuously schedule more microtasks so that the microtask queue never becomes empty and the event loop cannot proceed to another task.**
+
+The key difference is:
+
+```text
+Many finite microtasks
+        ↓
+Queue eventually empty
+        ↓
+Next task can execute
+```
+
+versus:
+
+```text
+Microtask
+    ↓
+creates microtask
+    ↓
+creates microtask
+    ↓
+creates microtask
+    ↓
+...
+    ↓
+Queue never becomes empty
+    ↓
+Other tasks are starved
+```
+
+---
+
+# Microtask Starvation vs Normal Delay
+
+These terms should also be distinguished.
+
+### Normal delay
+
+```text
+1000 microtasks
+       ↓
+all finish
+       ↓
+timer executes
+```
+
+The timer was **delayed**, but it eventually executed.
+
+### Starvation
+
+```text
+Microtask
+   ↓
+Microtask
+   ↓
+Microtask
+   ↓
+Microtask
+   ↓
+...
+```
+
+The next task is prevented from executing because the microtask work continues indefinitely.
+
+---
+
+# Another Example Using queueMicrotask()
+
+Starvation is not limited to Promises.
+
+`queueMicrotask()` also adds work to the microtask queue.
+
+```javascript
+function loop() {
+    queueMicrotask(() => {
+        console.log("microtask");
+        loop();
+    });
+}
+
+loop();
+
+setTimeout(() => {
+    console.log("Timer");
+}, 0);
+```
+
+Conceptually:
+
+```text
+queueMicrotask()
+       ↓
+Microtask executes
+       ↓
+queueMicrotask()
+       ↓
+Microtask executes
+       ↓
+queueMicrotask()
+       ↓
+...
+```
+
+Again, the microtask queue keeps being replenished.
+
+---
+
+# Key Rule
+
+Remember this simple rule:
+
+```text
+Many microtasks ≠ starvation
+
+Continuously generated microtasks
++
+microtask queue never becoming empty
++
+other tasks unable to get their turn
+=
+Microtask Starvation
+```
+
+This is why an **infinite or continuously replenished microtask chain** is the classic starvation example.
+
 
 The goal is to understand not only **what JavaScript features do**, but also **how JavaScript executes code and handles asynchronous operations in the browser**.
 
