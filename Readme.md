@@ -1,1283 +1,1090 @@
 # JavaScript Fundamentals & DOM Manipulation
 
-A beginner-friendly JavaScript repository covering the most commonly used JavaScript concepts, ES6 features, Array methods, Objects, Closures, DOM Manipulation, and Event Handling.
+A beginner-friendly and interview-focused JavaScript repository covering the most important **JavaScript fundamentals, ES6+, functions, execution context, hoisting, closures, arrays, objects, DOM manipulation, events, asynchronous JavaScript, Promises, async/await, browser storage, and performance optimization techniques**.
+
+This repository is designed as a practical roadmap for learning JavaScript from the fundamentals to asynchronous programming and DOM-based applications.
 
 ---
 
 # 📚 Table of Contents
 
-1. Introduction
-2. ES6 Features
-3. Functions
-4. Rest Operator
-5. Spread Operator
-6. Closures
-7. Immediately Invoked Function Expression (IIFE)
-8. Array Methods
-9. Object Methods
-10. Deep Copy vs Shallow Copy
-11. JSON Methods
-12. Optional Chaining
-13. DOM Manipulation
-14. Event Handling
-15. Best Practices
+1. [JavaScript Fundamentals](#1-javascript-fundamentals)
+2. [Variables, Scope & Hoisting](#2-variables-scope--hoisting)
+3. [Data Types & Type System](#3-data-types--type-system)
+4. [Operators & Type Conversion](#4-operators--type-conversion)
+5. [Functions](#5-functions)
+6. [Advanced Function Concepts](#6-advanced-function-concepts)
+7. [Execution Context & Call Stack](#7-execution-context--call-stack)
+8. [Arrays](#8-arrays)
+9. [Objects](#9-objects)
+10. [Destructuring, Spread & Rest](#10-destructuring-spread--rest)
+11. [Copying Data](#11-copying-data)
+12. [JSON](#12-json)
+13. [DOM Fundamentals](#13-dom-fundamentals)
+14. [DOM Manipulation](#14-dom-manipulation)
+15. [Events & Event Handling](#15-events--event-handling)
+16. [Event Bubbling, Capturing & Delegation](#16-event-bubbling-capturing--delegation)
+17. [Forms & Form Validation](#17-forms--form-validation)
+18. [Browser Storage](#18-browser-storage)
+19. [Synchronous JavaScript](#19-synchronous-javascript)
+20. [Asynchronous JavaScript](#20-asynchronous-javascript)
+21. [Callbacks & Callback Hell](#21-callbacks--callback-hell)
+22. [Timers](#22-timers)
+23. [Promises](#23-promises)
+24. [Promise Methods](#24-promise-methods)
+25. [Fetch API](#25-fetch-api)
+26. [Async & Await](#26-async--await)
+27. [Error Handling](#27-error-handling)
+28. [Event Loop](#28-event-loop)
+29. [This Keyword](#29-this-keyword)
+30. [call(), apply() & bind()](#30-call-apply--bind)
+31. [Throttling & Debouncing](#31-throttling--debouncing)
+32. [Modern JavaScript Best Practices](#32-modern-javascript-best-practices)
+33. [Common Interview Questions](#33-common-interview-questions)
+34. [JavaScript Cheat Sheet](#34-javascript-cheat-sheet)
+35. [How to Run](#35-how-to-run)
+36. [Contributing](#36-contributing)
+37. [License](#37-license)
 
 ---
 
-# Introduction
+# 1. JavaScript Fundamentals
 
-This repository contains examples of modern JavaScript concepts used in interviews and real-world applications.
+JavaScript is a high-level, dynamically typed programming language primarily used to create interactive web applications.
 
-Topics covered:
+JavaScript can run in:
 
-- Variables
-- Functions
-- Arrow Functions
-- Closures
-- Rest Operator
-- Spread Operator
-- Arrays
-- Objects
-- JSON
-- DOM
-- Event Handling
-- ES6 Features
+* Browsers
+* Node.js
+* Servers
+* Mobile applications
+* Desktop applications
+* Runtime environments
+
+## Basic Example
+
+```javascript
+console.log("Hello JavaScript");
+```
+
+Output:
+
+```text
+Hello JavaScript
+```
 
 ---
 
-# JavaScript Functions
+# 2. Variables, Scope & Hoisting
 
-Functions are reusable blocks of code designed to perform a specific task.
+Variables are used to store data.
+
+JavaScript provides:
+
+* `var`
+* `let`
+* `const`
+
+## var
+
+```javascript
+var name = "Amar";
+```
+
+`var` is function-scoped.
+
+## let
+
+```javascript
+let age = 29;
+```
+
+`let` is block-scoped.
+
+## const
+
+```javascript
+const country = "India";
+```
+
+`const` cannot be reassigned.
+
+---
+
+## Scope
+
+JavaScript has several types of scope:
+
+* Global scope
+* Function scope
+* Block scope
+* Lexical scope
 
 Example:
 
 ```javascript
-function greet(name){
+{
+    let x = 10;
+    const y = 20;
+}
+
+console.log(x); // ReferenceError
+```
+
+---
+
+## Hoisting
+
+Hoisting is JavaScript's behavior of processing declarations before executing code.
+
+### var
+
+```javascript
+console.log(a);
+
+var a = 10;
+```
+
+Output:
+
+```text
+undefined
+```
+
+Conceptually:
+
+```javascript
+var a;
+
+console.log(a);
+
+a = 10;
+```
+
+---
+
+## let and const Hoisting
+
+`let` and `const` are also hoisted, but they remain inaccessible inside the **Temporal Dead Zone (TDZ)** until their declaration is evaluated.
+
+```javascript
+console.log(a);
+
+let a = 10;
+```
+
+Output:
+
+```text
+ReferenceError
+```
+
+---
+
+## Temporal Dead Zone (TDZ)
+
+The TDZ is the period between entering a scope and reaching the declaration of a `let`, `const`, or `class`.
+
+```javascript
+console.log(name); // ReferenceError
+
+let name = "Amar";
+```
+
+---
+
+## Function Hoisting
+
+Function declarations are hoisted.
+
+```javascript
+greet();
+
+function greet() {
+    console.log("Hello");
+}
+```
+
+Output:
+
+```text
+Hello
+```
+
+Function expressions are different.
+
+```javascript
+greet();
+
+const greet = function () {
+    console.log("Hello");
+};
+```
+
+This results in a `ReferenceError` because `greet` is in the TDZ.
+
+---
+
+# 3. Data Types & Type System
+
+JavaScript is a **dynamically typed language**.
+
+This means a variable can hold values of different types during its lifetime.
+
+```javascript
+let value = 10;
+
+value = "Hello";
+
+value = true;
+```
+
+---
+
+## Primitive Data Types
+
+JavaScript has these primitive types:
+
+1. String
+2. Number
+3. BigInt
+4. Boolean
+5. Undefined
+6. Null
+7. Symbol
+
+Example:
+
+```javascript
+let name = "Amar";
+let age = 29;
+let isStudent = true;
+let value;
+let data = null;
+let bigNumber = 12345678901234567890n;
+let id = Symbol("id");
+```
+
+---
+
+## Non-Primitive Data Types
+
+The main non-primitive/reference type is:
+
+```text
+Object
+```
+
+Examples:
+
+```javascript
+const user = {
+    name: "Amar",
+    age: 29
+};
+
+const numbers = [1, 2, 3];
+
+const greet = function () {
+    console.log("Hello");
+};
+```
+
+Arrays and functions are objects in JavaScript's type system.
+
+---
+
+## typeof
+
+```javascript
+typeof "Hello"; // string
+typeof 10;      // number
+typeof true;    // boolean
+typeof undefined; // undefined
+typeof {};      // object
+typeof [];      // object
+typeof function() {}; // function
+```
+
+---
+
+## Why is `typeof NaN` a Number?
+
+```javascript
+typeof NaN;
+```
+
+Output:
+
+```text
+"number"
+```
+
+`NaN` means **Not-a-Number**, but it represents a special numeric value defined by JavaScript's Number type.
+
+```javascript
+0 / 0;
+```
+
+Result:
+
+```text
+NaN
+```
+
+Check it with:
+
+```javascript
+Number.isNaN(NaN);
+```
+
+Output:
+
+```text
+true
+```
+
+---
+
+# 4. Operators & Type Conversion
+
+## Arithmetic Operators
+
+```javascript
++
+-
+*
+/
+%
+**
+```
+
+---
+
+## Comparison Operators
+
+```javascript
+==
+===
+!=
+!==
+>
+<
+>=
+<=
+```
+
+Prefer strict equality:
+
+```javascript
+5 === 5;
+```
+
+---
+
+## Logical Operators
+
+```javascript
+&&
+||
+!
+```
+
+---
+
+## Ternary Operator
+
+The ternary operator is a short form of `if...else`.
+
+Syntax:
+
+```javascript
+condition ? valueIfTrue : valueIfFalse;
+```
+
+Example:
+
+```javascript
+const age = 20;
+
+const result = age >= 18 ? "Adult" : "Minor";
+
+console.log(result);
+```
+
+Output:
+
+```text
+Adult
+```
+
+---
+
+## Type Conversion
+
+Type conversion means explicitly converting one type to another.
+
+```javascript
+const value = "10";
+
+const number = Number(value);
+
+console.log(number);
+```
+
+---
+
+## Type Coercion
+
+Type coercion occurs when JavaScript automatically converts one type into another during an operation.
+
+```javascript
+console.log("5" + 2);
+```
+
+Output:
+
+```text
+52
+```
+
+But:
+
+```javascript
+console.log("5" - 2);
+```
+
+Output:
+
+```text
+3
+```
+
+The `+` operator can concatenate strings, while other arithmetic operators generally coerce numeric strings to numbers.
+
+---
+
+# 5. Functions
+
+Functions are reusable blocks of code.
+
+```javascript
+function greet(name) {
     console.log("Hello " + name);
 }
 
 greet("Amar");
 ```
 
-Output
-
-```
-Hello Amar
-```
-
 ---
 
 ## Function Declaration
 
-Syntax
-
 ```javascript
-function functionName(parameters){
-    // code
-}
-```
-
-Example
-
-```javascript
-function square(num){
-    return num*num;
+function square(num) {
+    return num * num;
 }
 
 console.log(square(5));
 ```
 
-Output
+Output:
 
-```
+```text
 25
 ```
 
-Advantages
-
-- Hoisted
-- Easy to read
-- Reusable
+Function declarations are hoisted.
 
 ---
 
 ## Function Expression
 
-Functions can also be stored inside variables.
-
-Example
+A function can be assigned to a variable.
 
 ```javascript
-const square = function(num){
-    return num*num;
+const square = function (num) {
+    return num * num;
 };
 
 console.log(square(5));
 ```
 
-Output
-
-```
-25
-```
-
-Difference from Function Declaration
-
-| Function Declaration | Function Expression |
-|----------------------|---------------------|
-| Hoisted | Not hoisted completely |
-| Declared using function keyword | Stored inside variable |
-| Can call before declaration | Cannot call before declaration |
-
 ---
 
-# Arrow Functions (ES6)
+## Arrow Function
 
-Arrow functions provide a shorter syntax for writing functions.
-
-Syntax
+Arrow functions provide shorter syntax.
 
 ```javascript
-const functionName = () => {
-
-}
-```
-
-Example
-
-```javascript
-const greet = () => {
-    console.log("Hello");
+const add = (a, b) => {
+    return a + b;
 };
 
-greet();
+console.log(add(5, 7));
 ```
 
-Output
-
-```
-Hello
-```
-
-Example with Parameters
+Short form:
 
 ```javascript
-const add = (a,b)=>{
-    return a+b;
-};
-
-console.log(add(5,7));
-```
-
-Output
-
-```
-12
+const add = (a, b) => a + b;
 ```
 
 ---
 
-# Rest Operator (...)
+## Important Arrow Function Difference
 
-The Rest Operator collects multiple arguments into a single array.
+Arrow functions do not have their own:
 
-Syntax
+* `this`
+* `arguments`
+* `super`
+* `new.target`
 
-```javascript
-function demo(...args){
+They obtain `this` lexically from their surrounding scope.
 
-}
-```
+---
 
-Example
+# 6. Advanced Function Concepts
 
-```javascript
-let abc = (...arr)=>{
-    console.log(arr);
-}
+## Rest Parameter
 
-abc(1,2,3,4,5,6,7);
-```
-
-Output
-
-```
-[
- 1,
- 2,
- 3,
- 4,
- 5,
- 6,
- 7
-]
-```
-
-Explanation
-
-```
-1
-2
-3
-4
-5
-6
-7
-```
-
-are collected into
-
-```
-[
-1,
-2,
-3,
-4,
-5,
-6,
-7
-]
-```
-
-So
-
-```
-arr becomes an array.
-```
-
-Advantages
-
-- Accept unlimited parameters
-- Cleaner code
-- Useful for utility functions
-
-Example
+The rest parameter collects multiple arguments into an array.
 
 ```javascript
-function sum(...numbers){
-
+function sum(...numbers) {
     let total = 0;
 
-    for(let num of numbers){
-        total += num;
+    for (const number of numbers) {
+        total += number;
     }
 
     return total;
-
 }
 
-console.log(sum(10,20,30));
+console.log(sum(10, 20, 30));
 ```
 
-Output
+Output:
 
-```
+```text
 60
 ```
 
 ---
 
-# Spread Operator (...)
+## Spread Syntax
 
-Spread Operator expands arrays or objects.
-
-Example
+Spread syntax expands an iterable or object.
 
 ```javascript
-let a = [1,2,3,4];
+const first = [1, 2, 3];
+const second = [...first, 4, 5];
 
-let b = [...a,5,6,7,8,9];
-
-console.log(b);
+console.log(second);
 ```
 
-Output
+Output:
 
-```
-[
-1,
-2,
-3,
-4,
-5,
-6,
-7,
-8,
-9
-]
+```text
+[1, 2, 3, 4, 5]
 ```
 
-Explanation
-
-```
-...a
-```
-
-copies every element individually.
-
-Equivalent to
-
-```
-1
-2
-3
-4
-```
-
-Advantages
-
-- Copy arrays
-- Merge arrays
-- Clone objects
-- Pass array into functions
-
-Example
+Object example:
 
 ```javascript
-let first=[1,2];
+const user = {
+    name: "Amar",
+    age: 29
+};
 
-let second=[3,4];
-
-let result=[...first,...second];
-
-console.log(result);
-```
-
-Output
-
-```
-[1,2,3,4]
+const copy = {
+    ...user
+};
 ```
 
 ---
 
-# Higher Order Function
+## Higher-Order Function
 
-A Higher Order Function is a function that:
+A higher-order function is a function that:
 
-- Takes another function as an argument
-- Returns another function
+* Accepts another function as an argument
+* Returns a function
+* Or does both
 
-Example
+Example:
 
 ```javascript
-function abc(val){
-
-    return function(){
-
-        return val*val;
-
-    }
-
+function calculate(operation, a, b) {
+    return operation(a, b);
 }
 
-console.log(abc(10)());
-```
-
-Output
-
-```
-100
-```
-
-Explanation
-
-First call
-
-```javascript
-abc(10)
-```
-
-returns
-
-```javascript
-function(){
-    return 100;
-}
-```
-
-Then
-
-```javascript
-()
-```
-
-calls that returned function.
-
-Hence
-
-```
-100
-```
-
----
-
-# Closures
-
-A Closure is a function that remembers variables from its outer function even after the outer function has finished execution.
-
-Example
-
-```javascript
-let abs = ()=>{
-
-    let count = 0;
-
-    return function(){
-
-        count++;
-
-        console.log(count);
-
-    }
-
+function add(a, b) {
+    return a + b;
 }
 
-const counter = abs();
-
-counter();
-counter();
-counter();
-```
-
-Output
-
-```
-1
-2
-3
-```
-
-Why?
-
-The inner function still has access to
-
-```javascript
-count
-```
-
-because JavaScript creates a closure.
-
-Real-world Uses
-
-- Counters
-- Private Variables
-- Timers
-- Event Listeners
-- Data Encapsulation
-
----
-
-# Immediately Invoked Function Expression (IIFE)
-
-An IIFE runs immediately after it is created.
-
-Syntax
-
-```javascript
-(function(){
-
-})();
-```
-
-Example
-
-```javascript
-(function(){
-
-    console.log("Executed");
-
-})();
-```
-
-Output
-
-```
-Executed
-```
-
-Your Example
-
-```javascript
-(function abc(){
-
-    let count=0;
-
-    count++;
-
-    console.log(count);
-
-})();
-```
-
-Output
-
-```
-1
-```
-
-Explanation
-
-The function executes immediately and cannot be called again.
-
----
-
-# Accessing IIFE Return Value
-
-Example
-
-```javascript
-const count = (function(){
-
-    let value=0;
-
-    value++;
-
-    return value;
-
-})();
-
-console.log(count);
-```
-
-Output
-
-```
-1
-```
-
-Why?
-
-The returned value is stored inside
-
-```javascript
-count
-```
-
-instead of being lost.
-
----
-
-# Summary
-
-In this section you learned:
-
-- ✅ Function Declaration
-- ✅ Function Expression
-- ✅ Arrow Functions
-- ✅ Rest Operator
-- ✅ Spread Operator
-- ✅ Higher Order Functions
-- ✅ Closures
-- ✅ IIFE
-
-# Arrays in JavaScript
-
-Arrays are ordered collections used to store multiple values in a single variable.
-
-```javascript
-let arr = [1, 2, 3, 4, 5];
-```
-
-Properties of Arrays:
-
-- Ordered collection
-- Zero-based indexing
-- Can store different data types
-- Dynamic in size
-
----
-
-# Array Methods
-
-## 1. pop()
-
-Removes the last element from an array.
-
-### Syntax
-
-```javascript
-array.pop();
-```
-
-### Example
-
-```javascript
-let arr = [1,2,3,4,5];
-
-console.log(arr.pop());
-console.log(arr);
-```
-
-### Output
-
-```
-5
-[1,2,3,4]
-```
-
-### Return Value
-
-Returns the removed element.
-
-### Time Complexity
-
-```
-O(1)
-```
-
----
-
-# 2. push()
-
-Adds one or more elements to the end of an array.
-
-### Syntax
-
-```javascript
-array.push(element);
-```
-
-### Example
-
-```javascript
-let arr = [1,2,3];
-
-arr.push(4);
-
-console.log(arr);
-```
-
-### Output
-
-```
-[1,2,3,4]
-```
-
-### Return Value
-
-Returns the new length.
-
----
-
-# 3. shift()
-
-Removes the first element.
-
-### Example
-
-```javascript
-let arr=[1,2,3,4];
-
-console.log(arr.shift());
-
-console.log(arr);
-```
-
-### Output
-
-```
-1
-
-[2,3,4]
-```
-
-### Time Complexity
-
-```
-O(n)
-```
-
----
-
-# 4. unshift()
-
-Adds elements at the beginning.
-
-### Example
-
-```javascript
-let arr=[2,3,4];
-
-arr.unshift(1);
-
-console.log(arr);
-```
-
-### Output
-
-```
-[1,2,3,4]
-```
-
-### Time Complexity
-
-```
-O(n)
-```
-
----
-
-# 5. splice()
-
-Adds, removes, or replaces elements.
-
-### Syntax
-
-```javascript
-array.splice(start, deleteCount, item1, item2...)
-```
-
-### Example (Insert)
-
-```javascript
-let arr=[1,2,3,4,5];
-
-arr.splice(2,0,10,20);
-
-console.log(arr);
-```
-
-### Output
-
-```
-[1,2,10,20,3,4,5]
-```
-
-### Example (Delete)
-
-```javascript
-let arr=[1,2,3,4,5];
-
-arr.splice(1,2);
-
-console.log(arr);
-```
-
-### Output
-
-```
-[1,4,5]
-```
-
-### Example (Replace)
-
-```javascript
-let arr=[1,2,3,4];
-
-arr.splice(2,1,100);
-
-console.log(arr);
-```
-
-### Output
-
-```
-[1,2,100,4]
-```
-
----
-
-# 6. slice()
-
-Returns a portion of an array.
-
-Original array remains unchanged.
-
-### Syntax
-
-```javascript
-array.slice(start,end)
-```
-
-### Example
-
-```javascript
-let arr=[1,2,3,4,5,6];
-
-let newArr=arr.slice(2,5);
-
-console.log(newArr);
-```
-
-### Output
-
-```
-[3,4,5]
-```
-
----
-
-# Difference between slice() and splice()
-
-| slice() | splice() |
-|----------|-----------|
-| Doesn't modify original array | Modifies original array |
-| Returns copied array | Returns removed elements |
-| Used for copying | Used for insert/delete |
-
----
-
-# 7. sort()
-
-Sorts elements.
-
-### Default Sort
-
-```javascript
-let arr=[20,3,100];
-
-arr.sort();
-
-console.log(arr);
-```
-
-Output
-
-```
-[100,20,3]
-```
-
-Why?
-
-Because default sorting is alphabetical.
-
----
-
-### Numeric Sort
-
-```javascript
-let arr=[20,3,100];
-
-arr.sort((a,b)=>a-b);
-
-console.log(arr);
-```
-
-Output
-
-```
-[3,20,100]
-```
-
-Descending
-
-```javascript
-arr.sort((a,b)=>b-a);
-```
-
-Output
-
-```
-[100,20,3]
-```
-
----
-
-# 8. reverse()
-
-Reverses an array.
-
-```javascript
-let arr=[1,2,3];
-
-arr.reverse();
-
-console.log(arr);
-```
-
-Output
-
-```
-[3,2,1]
-```
-
----
-
-# 9. includes()
-
-Checks if a value exists.
-
-Returns true or false.
-
-```javascript
-let arr=[1,2,3];
-
-console.log(arr.includes(2));
-
-console.log(arr.includes(10));
-```
-
-Output
-
-```
-true
-
-false
-```
-
----
-
-# 10. find()
-
-Returns the first matching element.
-
-```javascript
-let numbers=[1,2,8,10,15];
-
-let result=numbers.find((num)=>{
-
-    return num>5;
-
-});
-
-console.log(result);
-```
-
-Output
-
-```
-8
-```
-
-If nothing matches
-
-```
-undefined
-```
-
----
-
-# 11. findIndex()
-
-Returns the index of the first matching element.
-
-```javascript
-let arr=[10,20,30];
-
-console.log(arr.findIndex(val=>val==20));
-```
-
-Output
-
-```
-1
-```
-
-Not found
-
-```
--1
-```
-
----
-
-# 12. length
-
-Returns total number of elements.
-
-```javascript
-let arr=[1,2,3,4];
-
-console.log(arr.length);
-```
-
-Output
-
-```
-4
-```
-
----
-
-# 13. forEach()
-
-Loops over every element.
-
-Cannot return a new array.
-
-```javascript
-let arr=[1,2,3];
-
-arr.forEach((value)=>{
-
-    console.log(value);
-
-});
-```
-
-Output
-
-```
-1
-
-2
-
-3
-```
-
----
-
-# 14. for...of
-
-Modern loop for arrays.
-
-```javascript
-let arr=[10,20,30];
-
-for(let value of arr){
-
-    console.log(value);
-
-}
-```
-
-Output
-
+console.log(calculate(add, 10, 20));
 ```
-10
 
-20
+Output:
 
+```text
 30
 ```
 
 ---
 
-# 15. map()
+## IIFE
 
-Creates a new transformed array.
+IIFE means **Immediately Invoked Function Expression**.
 
-Original array remains unchanged.
+It executes immediately after being created.
 
 ```javascript
-let arr=[1,2,3];
-
-let square=arr.map((num)=>{
-
-    return num*num;
-
-});
-
-console.log(square);
+(function () {
+    console.log("Executed immediately");
+})();
 ```
 
-Output
+Arrow-function version:
 
-```
-[1,4,9]
+```javascript
+(() => {
+    console.log("Executed immediately");
+})();
 ```
 
 ---
 
-# 16. filter()
+## Lexical Scoping
 
-Returns only matching elements.
+Lexical scope means a function can access variables based on where the function was defined in the source code.
 
 ```javascript
-let arr=[1,2,3,4,5];
+const outer = "Hello";
 
-let even=arr.filter(num=>num%2==0);
+function test() {
+    console.log(outer);
+}
+
+test();
+```
+
+---
+
+## Closure
+
+A closure occurs when a function remembers and accesses variables from its outer lexical scope even after the outer function has finished execution.
+
+```javascript
+function counter() {
+    let count = 0;
+
+    return function () {
+        count++;
+
+        return count;
+    };
+}
+
+const increment = counter();
+
+console.log(increment());
+console.log(increment());
+console.log(increment());
+```
+
+Output:
+
+```text
+1
+2
+3
+```
+
+Common uses:
+
+* Data encapsulation
+* Counters
+* Function factories
+* Event handlers
+* Callbacks
+
+---
+
+## Pure Function
+
+A pure function:
+
+* Produces the same output for the same input
+* Does not modify external state
+
+```javascript
+function add(a, b) {
+    return a + b;
+}
+```
+
+---
+
+## Impure Function
+
+An impure function can depend on or modify external state.
+
+```javascript
+let total = 0;
+
+function add(value) {
+    total += value;
+}
+```
+
+---
+
+# 7. Execution Context & Call Stack
+
+JavaScript code executes inside **execution contexts**.
+
+The major contexts are:
+
+1. Global Execution Context
+2. Function Execution Context
+3. Eval Execution Context
+
+---
+
+## Global Execution Context
+
+Created when JavaScript starts executing a script.
+
+It provides the global environment for the program.
+
+---
+
+## Function Execution Context
+
+Created every time a function is called.
+
+Example:
+
+```javascript
+function greet() {
+    const message = "Hello";
+
+    console.log(message);
+}
+
+greet();
+```
+
+A new function execution context is created when `greet()` runs.
+
+---
+
+## Call Stack
+
+The call stack tracks currently executing functions.
+
+```javascript
+function one() {
+    two();
+}
+
+function two() {
+    three();
+}
+
+function three() {
+    console.log("Hello");
+}
+
+one();
+```
+
+Conceptually:
+
+```text
+three()
+two()
+one()
+Global
+```
+
+Functions are removed from the stack when they finish execution.
+
+---
+
+# 8. Arrays
+
+Arrays store ordered collections.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+```
+
+Arrays are:
+
+* Zero-indexed
+* Ordered
+* Dynamic
+* Able to contain different values
+
+---
+
+## Common Array Methods
+
+### push()
+
+Adds elements to the end.
+
+```javascript
+const arr = [1, 2, 3];
+
+arr.push(4);
+```
+
+---
+
+### pop()
+
+Removes the last element.
+
+```javascript
+arr.pop();
+```
+
+---
+
+### shift()
+
+Removes the first element.
+
+```javascript
+arr.shift();
+```
+
+---
+
+### unshift()
+
+Adds elements to the beginning.
+
+```javascript
+arr.unshift(0);
+```
+
+---
+
+## slice()
+
+Returns a portion of an array without modifying the original array.
+
+```javascript
+const arr = [1, 2, 3, 4, 5];
+
+const result = arr.slice(1, 4);
+
+console.log(result);
+```
+
+Output:
+
+```text
+[2, 3, 4]
+```
+
+---
+
+## splice()
+
+Adds, removes, or replaces elements and **modifies the original array**.
+
+```javascript
+const arr = [1, 2, 3, 4];
+
+arr.splice(1, 2);
+
+console.log(arr);
+```
+
+Output:
+
+```text
+[1, 4]
+```
+
+---
+
+## slice() vs splice()
+
+| slice()                     | splice()                       |
+| --------------------------- | ------------------------------ |
+| Does not modify original    | Modifies original              |
+| Returns a portion           | Returns removed elements       |
+| Used for copying/extracting | Used for insert/delete/replace |
+
+---
+
+## map()
+
+`map()` creates a new array by transforming every element.
+
+```javascript
+const numbers = [1, 2, 3];
+
+const squares = numbers.map(num => num * num);
+
+console.log(squares);
+```
+
+Output:
+
+```text
+[1, 4, 9]
+```
+
+### Why is `map()` a Higher-Order Function?
+
+Because it accepts a callback function:
+
+```javascript
+numbers.map(num => num * 2);
+```
+
+The callback is a function passed into another function.
+
+---
+
+## forEach()
+
+Executes a function for each element.
+
+```javascript
+numbers.forEach(num => {
+    console.log(num);
+});
+```
+
+`forEach()` does not create a new transformed array.
+
+---
+
+## map() vs forEach()
+
+| map()                               | forEach()                           |
+| ----------------------------------- | ----------------------------------- |
+| Returns a new array                 | Returns `undefined`                 |
+| Used for transformation             | Used for side effects               |
+| Can be chained                      | Usually used for iteration          |
+| Does not mutate the array by itself | Does not mutate the array by itself |
+
+---
+
+## filter()
+
+Returns elements that satisfy a condition.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+const even = numbers.filter(num => num % 2 === 0);
 
 console.log(even);
 ```
 
-Output
+Output:
 
-```
-[2,4]
+```text
+[2, 4]
 ```
 
 ---
 
-# 17. reduce()
+## find()
 
-Reduces array into a single value.
-
-### Syntax
+Returns the **first matching element**.
 
 ```javascript
-array.reduce((accumulator,currentValue)=>{
+const numbers = [1, 2, 8, 10];
 
-},initialValue)
+const result = numbers.find(num => num > 5);
+
+console.log(result);
 ```
 
-### Example
+Output:
+
+```text
+8
+```
+
+---
+
+## filter() vs find()
+
+| filter()             | find()                      |
+| -------------------- | --------------------------- |
+| Returns an array     | Returns one element         |
+| Returns all matches  | Returns first match         |
+| Returns `[]` if none | Returns `undefined` if none |
+
+---
+
+## reduce()
+
+`reduce()` processes an array and accumulates it into a single result.
 
 ```javascript
-let arr=[1,2,3,4];
+const numbers = [1, 2, 3, 4];
 
-let sum=arr.reduce((acc,val)=>{
-
-    return acc+val;
-
-},0);
+const sum = numbers.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+}, 0);
 
 console.log(sum);
 ```
 
-Output
+Output:
 
-```
+```text
 10
 ```
 
-Example: Product
+Common uses:
+
+* Sum
+* Product
+* Average
+* Grouping
+* Building objects
+* Counting values
+
+---
+
+## some()
+
+Returns `true` if at least one element satisfies the condition.
 
 ```javascript
-let arr=[1,2,3,4];
-
-let product=arr.reduce((acc,val)=>acc*val,1);
-
-console.log(product);
-```
-
-Output
-
-```
-24
+[1, 2, 3].some(num => num > 2);
 ```
 
 ---
 
-# 18. some()
+## every()
 
-Returns true if **at least one** element satisfies the condition.
-
-```javascript
-let arr=[1,2,3];
-
-console.log(arr.some(val=>val>2));
-```
-
-Output
-
-```
-true
-```
-
-Another Example
+Returns `true` only when every element satisfies the condition.
 
 ```javascript
-console.log(arr.some(val=>val>10));
-```
-
-Output
-
-```
-false
+[2, 4, 6].every(num => num % 2 === 0);
 ```
 
 ---
 
-# 19. every()
+# 9. Objects
 
-Returns true only if **all** elements satisfy the condition.
-
-```javascript
-let arr=[2,4,6];
-
-console.log(arr.every(val=>val%2==0));
-```
-
-Output
-
-```
-true
-```
-
-Another Example
-
-```javascript
-let arr=[2,4,5];
-
-console.log(arr.every(val=>val%2==0));
-```
-
-Output
-
-```
-false
-```
-
----
-
-# Method Comparison Table
-
-| Method | Modifies Original Array | Returns |
-|---------|-------------------------|----------|
-| push() | ✅ Yes | New length |
-| pop() | ✅ Yes | Removed element |
-| shift() | ✅ Yes | Removed element |
-| unshift() | ✅ Yes | New length |
-| splice() | ✅ Yes | Removed elements |
-| slice() | ❌ No | New array |
-| map() | ❌ No | New array |
-| filter() | ❌ No | New array |
-| reduce() | ❌ No | Single value |
-| forEach() | ❌ No | Undefined |
-| some() | ❌ No | Boolean |
-| every() | ❌ No | Boolean |
-| includes() | ❌ No | Boolean |
-| find() | ❌ No | Element |
-| findIndex() | ❌ No | Index |
-| reverse() | ✅ Yes | Reversed array |
-| sort() | ✅ Yes | Sorted array |
-
----
-
-# Interview Tips
-
-### Use `map()` when:
-- You want to transform every element.
-- A new array is needed.
-
-### Use `filter()` when:
-- You want only matching elements.
-
-### Use `reduce()` when:
-- You need one final result (sum, product, average, object, etc.).
-
-### Use `find()` when:
-- You only need the first matching element.
-
-### Use `some()` when:
-- At least one element should satisfy a condition.
-
-### Use `every()` when:
-- Every element must satisfy a condition.
-
----
-
-# Summary
-
-In this section, you learned:
-
-- ✅ Array creation
-- ✅ push()
-- ✅ pop()
-- ✅ shift()
-- ✅ unshift()
-- ✅ splice()
-- ✅ slice()
-- ✅ sort()
-- ✅ reverse()
-- ✅ includes()
-- ✅ find()
-- ✅ findIndex()
-- ✅ forEach()
-- ✅ for...of
-- ✅ map()
-- ✅ filter()
-- ✅ reduce()
-- ✅ some()
-- ✅ every()
-- ✅ Time complexity basics
-- ✅ Interview use cases
-
-# Objects in JavaScript
-
-An **Object** is a collection of key-value pairs used to store related data and functionality.
+Objects store data using key-value pairs.
 
 ```javascript
 const person = {
@@ -1286,353 +1093,102 @@ const person = {
 };
 ```
 
-Output
+---
 
-```text
-{
-  name: "Amar",
-  age: 29
-}
+## Two Ways to Access Object Properties
+
+### Dot Notation
+
+```javascript
+console.log(person.name);
+```
+
+### Bracket Notation
+
+```javascript
+console.log(person["name"]);
+```
+
+Bracket notation is especially useful with dynamic property names.
+
+```javascript
+const property = "name";
+
+console.log(person[property]);
 ```
 
 ---
 
-# Creating Objects
-
-Objects can be created using object literals.
+## Adding Properties
 
 ```javascript
-const obj = {
-    name: "Amar",
-    age: 29
-};
-
-console.log(obj);
-```
-
-Output
-
-```text
-{
-  name: "Amar",
-  age: 29
-}
+person.city = "Kanpur";
 ```
 
 ---
 
-# Accessing Object Properties
-
-## Dot Notation
+## Updating Properties
 
 ```javascript
-console.log(obj.name);
-console.log(obj.age);
-```
-
-Output
-
-```text
-Amar
-29
+person.age = 30;
 ```
 
 ---
 
-## Bracket Notation
-
-Useful when property names are dynamic.
+## Deleting Properties
 
 ```javascript
-console.log(obj["name"]);
-console.log(obj["age"]);
-```
-
-Output
-
-```text
-Amar
-29
+delete person.city;
 ```
 
 ---
 
-# Adding New Properties
+## Object.keys()
 
 ```javascript
-obj.pet = "Lion";
-
-console.log(obj);
+Object.keys(person);
 ```
 
-Output
-
-```text
-{
-  name: "Amar",
-  age: 29,
-  pet: "Lion"
-}
-```
+Returns property names.
 
 ---
 
-# Updating Properties
+## Object.values()
 
 ```javascript
-obj.pet = "Dog";
-
-console.log(obj);
+Object.values(person);
 ```
 
-Output
-
-```text
-{
-  name: "Amar",
-  age: 29,
-  pet: "Dog"
-}
-```
+Returns property values.
 
 ---
 
-# Deleting Properties
+## Object.entries()
 
 ```javascript
-delete obj.pet;
-
-console.log(obj);
+Object.entries(person);
 ```
 
-Output
-
-```text
-{
-  name: "Amar",
-  age: 29
-}
-```
+Returns key-value pairs.
 
 ---
 
-# Copying Objects using Spread Operator
-
-```javascript
-const obj = {
-    name: "Amar",
-    age: 29
-};
-
-const newObj = { ...obj };
-
-console.log(newObj);
-```
-
-Output
-
-```text
-{
-  name: "Amar",
-  age: 29
-}
-```
-
-Now change the original object.
-
-```javascript
-obj.name = "Anupam";
-
-console.log(obj);
-console.log(newObj);
-```
-
-Output
-
-```text
-{
-  name: "Anupam",
-  age: 29
-}
-
-{
-  name: "Amar",
-  age: 29
-}
-```
-
-Since primitive values are copied by value, the copied object remains unchanged.
-
----
-
-# Object.assign()
-
-`Object.assign()` copies properties from one or more source objects into a target object.
-
-Syntax
-
-```javascript
-Object.assign(target, source);
-```
-
-Example
-
-```javascript
-const obj = {
-    name: "Amar",
-    age: 29
-};
-
-const newObj = Object.assign({ roll: 28 }, obj);
-
-console.log(newObj);
-```
-
-Output
-
-```text
-{
-  roll: 28,
-  name: "Amar",
-  age: 29
-}
-```
-
-Clone an object
-
-```javascript
-const clone = Object.assign({}, obj);
-
-console.log(clone);
-```
-
-Output
-
-```text
-{
-  name: "Amar",
-  age: 29
-}
-```
-
----
-
-# Object.keys()
-
-Returns all property names.
-
-```javascript
-const obj = {
-    name: "Amar",
-    age: 29
-};
-
-console.log(Object.keys(obj));
-```
-
-Output
-
-```text
-["name","age"]
-```
-
----
-
-# Object.values()
-
-Returns all property values.
-
-```javascript
-console.log(Object.values(obj));
-```
-
-Output
-
-```text
-["Amar",29]
-```
-
----
-
-# Object.entries()
-
-Returns an array of key-value pairs.
-
-```javascript
-console.log(Object.entries(obj));
-```
-
-Output
-
-```text
-[
- ["name","Amar"],
- ["age",29]
-]
-```
-
----
-
-# Nested Objects
-
-Objects can contain other objects.
+## Nested Objects
 
 ```javascript
 const student = {
-
     name: "Amar",
 
-    age: 29,
-
     location: {
-
         city: "Kanpur",
-
-        state: "Uttar Pradesh",
-
-        country: "India",
-
-        pincode: 208017
-
+        state: "Uttar Pradesh"
     }
-
 };
-
-console.log(student);
-```
-
-Output
-
-```text
-{
-  name: "Amar",
-  age: 29,
-  location: {
-      city: "Kanpur",
-      state: "Uttar Pradesh",
-      country: "India",
-      pincode: 208017
-  }
-}
 ```
 
 ---
 
-# Accessing Nested Properties
-
-```javascript
-console.log(student.location.city);
-```
-
-Output
-
-```text
-Kanpur
-```
-
----
-
-# Optional Chaining (?.)
+## Optional Chaining
 
 Optional chaining safely accesses nested properties.
 
@@ -1640,846 +1196,235 @@ Optional chaining safely accesses nested properties.
 console.log(student?.location?.city);
 ```
 
-Output
-
-```text
-Kanpur
-```
-
-If the property doesn't exist:
+If a property does not exist:
 
 ```javascript
 console.log(student?.address?.city);
 ```
 
-Output
+Result:
 
 ```text
 undefined
 ```
 
-Without optional chaining:
-
-```javascript
-console.log(student.address.city);
-```
-
-Output
-
-```text
-TypeError
-```
-
-Optional chaining prevents runtime errors when accessing undefined properties.
-
 ---
 
-# Shallow Copy
+# 10. Destructuring, Spread & Rest
 
-Spread operator and `Object.assign()` create a **shallow copy**.
-
-Example
+## Object Destructuring
 
 ```javascript
 const user = {
-
     name: "Amar",
+    age: 29
+};
 
+const { name, age } = user;
+
+console.log(name);
+console.log(age);
+```
+
+---
+
+## Nested Destructuring
+
+```javascript
+const student = {
+    name: "Amar",
     location: {
-
-        country: "India"
-
+        city: "Kanpur",
+        state: "Uttar Pradesh"
     }
+};
 
+const {
+    location: { city, state }
+} = student;
+```
+
+---
+
+## Array Destructuring
+
+```javascript
+const numbers = [10, 20, 30];
+
+const [a, b, c] = numbers;
+```
+
+---
+
+## Rest vs Spread
+
+The same `...` syntax has different purposes.
+
+### Rest
+
+Collects values.
+
+```javascript
+function test(...args) {
+    console.log(args);
+}
+```
+
+### Spread
+
+Expands values.
+
+```javascript
+const arr = [1, 2, 3];
+
+console.log(...arr);
+```
+
+---
+
+# 11. Copying Data
+
+## Shallow Copy
+
+Copies only the first level.
+
+```javascript
+const user = {
+    name: "Amar",
+    address: {
+        city: "Kanpur"
+    }
 };
 
 const copy = { ...user };
-
-copy.location.country = "USA";
-
-console.log(copy.location.country);
-
-console.log(user.location.country);
 ```
 
-Output
+Nested objects are still shared.
+
+```javascript
+copy.address.city = "Lucknow";
+
+console.log(user.address.city);
+```
+
+Output:
 
 ```text
-USA
-
-USA
+Lucknow
 ```
-
-Why?
-
-Only the first level is copied.
-
-Nested objects still reference the same memory.
 
 ---
 
-# Deep Copy
+## Creating a Shallow Copy
 
-Deep copy creates completely independent copies.
-
-One common approach:
+Using spread:
 
 ```javascript
-const deepCopy = JSON.parse(JSON.stringify(user));
+const copy = { ...user };
 ```
 
-Example
+Using `Object.assign()`:
+
+```javascript
+const copy = Object.assign({}, user);
+```
+
+For arrays:
+
+```javascript
+const copy = [...arr];
+```
+
+---
+
+## Deep Copy
+
+A deep copy creates independent nested structures.
+
+Modern JavaScript provides:
+
+```javascript
+const copy = structuredClone(user);
+```
+
+For supported values, this is generally preferable to using JSON serialization as a generic deep-cloning technique.
+
+---
+
+## JSON Deep Copy
+
+```javascript
+const copy = JSON.parse(JSON.stringify(user));
+```
+
+However, JSON cloning has limitations and does not preserve values such as:
+
+* Functions
+* `undefined`
+* `Symbol`
+* `BigInt`
+* `Map`
+* `Set`
+* Some special object types
+
+It also cannot handle circular references.
+
+---
+
+# 12. JSON
+
+## JSON.stringify()
+
+Converts a JavaScript value into a JSON string.
 
 ```javascript
 const user = {
-
     name: "Amar",
-
-    location: {
-
-        country: "India"
-
-    }
-
-};
-
-const deepCopy = JSON.parse(JSON.stringify(user));
-
-deepCopy.location.country = "Australia";
-
-console.log(user.location.country);
-
-console.log(deepCopy.location.country);
-```
-
-Output
-
-```text
-India
-
-Australia
-```
-
----
-
-# JSON.stringify()
-
-Converts a JavaScript object into a JSON string.
-
-Example
-
-```javascript
-const obj = {
-
-    name: "Amar",
-
     age: 29
-
 };
 
-const json = JSON.stringify(obj);
+const json = JSON.stringify(user);
 
 console.log(json);
 ```
 
-Output
-
-```text
-{"name":"Amar","age":29}
-```
-
-Data Type
-
-```text
-String
-```
-
 ---
 
-# JSON.parse()
+## JSON.parse()
 
-Converts a JSON string back into a JavaScript object.
+Converts JSON text into a JavaScript value.
 
 ```javascript
 const json = '{"name":"Amar","age":29}';
 
-const obj = JSON.parse(json);
+const user = JSON.parse(json);
 
-console.log(obj);
-```
-
-Output
-
-```text
-{
-  name: "Amar",
-  age: 29
-}
+console.log(user.name);
 ```
 
 ---
 
-# Object Destructuring (ES6)
+# 13. DOM Fundamentals
 
-Extract properties into variables.
+DOM means **Document Object Model**.
 
-```javascript
-const student = {
+The browser creates a tree-like representation of an HTML document.
 
-    name: "Amar",
+JavaScript can use the DOM to:
 
-    age: 29,
-
-    location: {
-
-        city: "Kanpur",
-
-        state: "Uttar Pradesh",
-
-        country: "India",
-
-        pincode: 208017
-
-    }
-
-};
-
-const {
-
-    city,
-
-    state,
-
-    country,
-
-    pincode
-
-} = student.location;
-
-console.log(city);
-
-console.log(state);
-
-console.log(country);
-
-console.log(pincode);
-```
-
-Output
-
-```text
-Kanpur
-
-Uttar Pradesh
-
-India
-
-208017
-```
+* Read elements
+* Change content
+* Change attributes
+* Modify styles
+* Create elements
+* Remove elements
+* Handle events
 
 ---
 
-# Object.freeze()
+## Selecting Elements
 
-Prevents modifications to an object.
-
-```javascript
-const obj = {
-
-    name: "Amar"
-
-};
-
-Object.freeze(obj);
-
-obj.name = "Anupam";
-
-console.log(obj.name);
-```
-
-Output
-
-```text
-Amar
-```
-
-After freezing:
-
-- Cannot add properties
-- Cannot delete properties
-- Cannot update properties
-
----
-
-# Spread Operator vs Object.assign()
-
-| Spread Operator | Object.assign() |
-|-----------------|-----------------|
-| ES6 Feature | ES5 Method |
-| Cleaner syntax | More verbose |
-| Creates shallow copy | Creates shallow copy |
-| Easy to merge objects | Can merge multiple objects |
-
-Example
-
-```javascript
-const obj1 = {
-    a: 1
-};
-
-const obj2 = {
-    b: 2
-};
-
-const merged = {
-    ...obj1,
-    ...obj2
-};
-
-console.log(merged);
-```
-
-Output
-
-```text
-{
-  a: 1,
-  b: 2
-}
-```
-
----
-
-# Shallow Copy vs Deep Copy
-
-| Shallow Copy | Deep Copy |
-|--------------|-----------|
-| Copies first level only | Copies every level |
-| Nested objects are shared | Nested objects are independent |
-| Fast | Slightly slower |
-| Spread / Object.assign() | JSON.parse(JSON.stringify())* |
-
-> **Note:** `JSON.parse(JSON.stringify())` works well for plain objects but does **not** preserve functions, `Date`, `Map`, `Set`, `undefined`, or circular references. Modern JavaScript also provides `structuredClone()` for many deep-copy use cases.
-
----
-
-# Best Practices
-
-- Prefer object destructuring for cleaner code.
-- Use optional chaining (`?.`) to avoid runtime errors.
-- Use the spread operator for simple cloning and merging.
-- Use `Object.freeze()` for immutable configuration objects.
-- Use `structuredClone()` (or another suitable deep-cloning technique) when you need a true deep copy of supported data types.
-
----
-
-# Summary
-
-In this section, you learned:
-
-- ✅ Object creation
-- ✅ Accessing properties
-- ✅ Adding, updating, deleting properties
-- ✅ Spread operator with objects
-- ✅ Object.assign()
-- ✅ Object.keys()
-- ✅ Object.values()
-- ✅ Object.entries()
-- ✅ Nested objects
-- ✅ Optional chaining
-- ✅ Shallow copy
-- ✅ Deep copy
-- ✅ JSON.stringify()
-- ✅ JSON.parse()
-- ✅ Object destructuring
-- ✅ Object.freeze()
-- ✅ Best practices for working with objects
-
-# DOM (Document Object Model)
-
-The **Document Object Model (DOM)** is a programming interface for HTML documents.
-
-It represents every HTML element as an object, allowing JavaScript to:
-
-- Read HTML elements
-- Modify HTML content
-- Change CSS styles
-- Add or remove elements
-- Respond to user events
-
----
-
-# What is the DOM?
-
-When a webpage loads, the browser converts the HTML into a tree-like structure.
-
-Example HTML
-
-```html
-<body>
-
-    <h1 class="first">Hello World</h1>
-
-    <h2 id="third">JavaScript</h2>
-
-    <h3>DOM Tutorial</h3>
-
-</body>
-```
-
-DOM Tree
-
-```
-Document
-│
-└── html
-    │
-    └── body
-        │
-        ├── h1
-        ├── h2
-        └── h3
-```
-
-JavaScript can access any node in this tree.
-
----
-
-# Selecting Elements
-
-JavaScript provides multiple ways to select HTML elements.
-
-1. getElementById()
-2. getElementsByClassName()
-3. getElementsByTagName()
-4. querySelector()
-5. querySelectorAll()
-
----
-
-# getElementById()
-
-Selects an element using its unique **id**.
-
-### Syntax
-
-```javascript
-document.getElementById("id");
-```
-
-### HTML
-
-```html
-<h1 id="title">Hello</h1>
-```
-
-### JavaScript
-
-```javascript
-let title = document.getElementById("title");
-
-console.log(title);
-```
-
-Output
-
-```
-<h1 id="title">Hello</h1>
-```
-
-Returns
-
-```
-HTMLElement
-```
-
----
-
-# getElementsByClassName()
-
-Selects all elements having the same class.
-
-### Syntax
-
-```javascript
-document.getElementsByClassName("className");
-```
-
-### HTML
-
-```html
-<p class="first">One</p>
-
-<p class="first">Two</p>
-```
-
-### JavaScript
-
-```javascript
-let items = document.getElementsByClassName("first");
-
-console.log(items);
-```
-
-Output
-
-```
-HTMLCollection(2)
-```
-
-Access first element
-
-```javascript
-console.log(items[0]);
-```
-
----
-
-# getElementsByTagName()
-
-Selects all matching HTML tags.
-
-Example
-
-```javascript
-let headings = document.getElementsByTagName("h1");
-
-console.log(headings);
-```
-
-Output
-
-```
-HTMLCollection
-```
-
----
-
-# querySelector()
-
-Returns the **first** matching element.
-
-Syntax
-
-```javascript
-document.querySelector(selector);
-```
-
-Examples
-
-Select by tag
-
-```javascript
-let h3 = document.querySelector("h3");
-```
-
-Select by class
-
-```javascript
-let element = document.querySelector(".first");
-```
-
-Select by id
-
-```javascript
-let title = document.querySelector("#third");
-```
-
-Returns
-
-```
-HTMLElement
-```
-
----
-
-# querySelectorAll()
-
-Returns **all** matching elements.
-
-Syntax
-
-```javascript
-document.querySelectorAll(selector);
-```
-
-Example
-
-```javascript
-let paragraphs = document.querySelectorAll("p");
-
-console.log(paragraphs);
-```
-
-Output
-
-```
-NodeList
-```
-
-Loop through them
-
-```javascript
-paragraphs.forEach((item)=>{
-
-    console.log(item);
-
-});
-```
-
----
-
-# Difference
-
-| Method | Returns | Selects |
-|---------|----------|----------|
-| getElementById() | HTMLElement | One ID |
-| getElementsByClassName() | HTMLCollection | Multiple classes |
-| getElementsByTagName() | HTMLCollection | Multiple tags |
-| querySelector() | HTMLElement | First match |
-| querySelectorAll() | NodeList | All matches |
-
----
-
-# getAttribute()
-
-Reads an attribute value.
-
-HTML
-
-```html
-<img src="cat.jpg">
-```
-
-JavaScript
-
-```javascript
-let image = document.querySelector("img");
-
-console.log(image.getAttribute("src"));
-```
-
-Output
-
-```
-cat.jpg
-```
-
----
-
-# setAttribute()
-
-Changes or creates an attribute.
-
-Syntax
-
-```javascript
-element.setAttribute(name,value);
-```
-
-Example
-
-```javascript
-image.setAttribute("width","300");
-```
-
-Output
-
-```
-Image width becomes 300px.
-```
-
----
-
-# Changing Image Dynamically
-
-Example
-
-```javascript
-let image = document.querySelector("img");
-
-image.setAttribute(
-    "src",
-    "images/photo.jpg"
-);
-
-image.setAttribute(
-    "width",
-    "300"
-);
-```
-
-Output
-
-The displayed image changes.
-
----
-
-# Multiple Images
-
-Your project changes several images.
-
-Example
-
-```javascript
-let i1 = document.querySelector(".a");
-
-i1.setAttribute(
-    "src",
-    "image1.jpg"
-);
-
-i1.setAttribute(
-    "width",
-    "200"
-);
-```
-
-Similarly
-
-```javascript
-.a
-.b
-.c
-.d
-.e
-```
-
-are updated.
-
----
-
-# Accessing Elements
-
-By Tag
-
-```javascript
-document.querySelector("img");
-```
-
-By ID
-
-```javascript
-document.querySelector("#third");
-```
-
-By Class
-
-```javascript
-document.querySelector(".first");
-```
-
----
-
-# HTMLCollection vs NodeList
-
-| HTMLCollection | NodeList |
-|----------------|----------|
-| Live Collection | Static Collection |
-| Returned by getElementsByClassName() | Returned by querySelectorAll() |
-| Doesn't have forEach() in older browsers | Supports forEach() |
-
----
-
-# Common Mistakes in Your Code
-
-## Mistake 1
-
-```javascript
-document.querySelectorAll("fifth");
-```
-
-Problem
-
-```
-Missing dot (.)
-```
-
-Correct
-
-```javascript
-document.querySelectorAll(".fifth");
-```
-
----
-
-## Mistake 2
-
-```javascript
-nest_obj.location.city
-```
-
-Your object contains
-
-```javascript
-locations
-```
-
-not
-
-```javascript
-location
-```
-
-Correct
-
-```javascript
-nest_obj.locations.city
-```
-
----
-
-## Mistake 3
-
-```javascript
-nest_obj?.location?.city
-```
-
-Should be
-
-```javascript
-nest_obj?.locations?.city
-```
-
----
-
-## Mistake 4
-
-Using long external URLs directly.
-
-A better approach is
-
-```html
-<img src="images/photo.jpg">
-```
-
-Project structure
-
-```
-project/
-
-│
-
-├── images/
-
-│      cat.jpg
-
-│      dog.jpg
-
-│
-
-├── css/
-
-├── js/
-
-└── index.html
-```
-
----
-
-# Best Practices
-
-✅ Use IDs for unique elements.
+### getElementById()
 
 ```javascript
 document.getElementById("title");
@@ -2487,7 +1432,37 @@ document.getElementById("title");
 
 ---
 
-✅ Use classes for repeated elements.
+### getElementsByClassName()
+
+```javascript
+document.getElementsByClassName("card");
+```
+
+Returns an `HTMLCollection`.
+
+---
+
+### getElementsByTagName()
+
+```javascript
+document.getElementsByTagName("p");
+```
+
+---
+
+### querySelector()
+
+Returns the first matching element.
+
+```javascript
+document.querySelector(".card");
+```
+
+---
+
+### querySelectorAll()
+
+Returns all matching elements.
 
 ```javascript
 document.querySelectorAll(".card");
@@ -2495,601 +1470,1106 @@ document.querySelectorAll(".card");
 
 ---
 
-✅ Prefer `querySelector()` for modern JavaScript.
+## HTMLCollection vs NodeList
+
+| HTMLCollection                                          | NodeList                                       |
+| ------------------------------------------------------- | ---------------------------------------------- |
+| Commonly returned by older DOM collection APIs          | Returned by `querySelectorAll()`               |
+| Some HTMLCollections are live                           | `querySelectorAll()` returns a static NodeList |
+| Array-like                                              | Array-like                                     |
+| Modern HTMLCollection supports useful iteration methods | NodeList supports `forEach()`                  |
 
 ---
 
-✅ Cache frequently used elements.
+# 14. DOM Manipulation
 
-Instead of
+## textContent
+
+Reads or writes text content.
 
 ```javascript
-document.querySelector("img");
+element.textContent = "Hello";
 ```
 
-multiple times
+---
 
-Use
+## innerText
+
+Works with rendered text and is affected by CSS/layout.
+
+```javascript
+element.innerText = "Hello";
+```
+
+---
+
+## innerHTML
+
+Reads or writes HTML markup.
+
+```javascript
+element.innerHTML = "<strong>Hello</strong>";
+```
+
+Do not insert untrusted user input into `innerHTML`, because it can create security problems such as XSS.
+
+---
+
+## textContent vs innerText vs innerHTML
+
+| Property      | Purpose                        |
+| ------------- | ------------------------------ |
+| `textContent` | Text content                   |
+| `innerText`   | Rendered/visible text behavior |
+| `innerHTML`   | HTML markup                    |
+
+---
+
+## getAttribute()
 
 ```javascript
 const image = document.querySelector("img");
+
+console.log(image.getAttribute("src"));
 ```
 
 ---
 
-✅ Store image paths in variables or arrays.
-
-Example
+## setAttribute()
 
 ```javascript
-const images = [
-
-    "images/1.jpg",
-
-    "images/2.jpg",
-
-    "images/3.jpg"
-
-];
+image.setAttribute("src", "images/photo.jpg");
 ```
 
 ---
 
-# Interview Questions
-
-### Difference between HTMLCollection and NodeList?
-
-| HTMLCollection | NodeList |
-|----------------|----------|
-| Live | Static |
-| Returned by getElementsByClassName() | Returned by querySelectorAll() |
-| Older browser support differs | Supports forEach() |
-
----
-
-### Difference between getElementById() and querySelector()?
-
-| getElementById() | querySelector() |
-|------------------|-----------------|
-| Faster | Slightly slower |
-| Only IDs | Any CSS selector |
-| Returns one element | Returns first matching element |
-
----
-
-### Why use querySelector()?
-
-Because it accepts any valid CSS selector.
-
-Examples
+## Creating Elements
 
 ```javascript
-document.querySelector("#id");
+const heading = document.createElement("h1");
 
-document.querySelector(".class");
+heading.textContent = "Hello JavaScript";
 
-document.querySelector("div");
-
-document.querySelector("div img");
+document.body.appendChild(heading);
 ```
 
 ---
 
-# Summary
+## Removing Elements
 
-In this section, you learned:
+```javascript
+element.remove();
+```
 
-- ✅ What is the DOM?
-- ✅ DOM Tree
-- ✅ Selecting elements
-- ✅ getElementById()
-- ✅ getElementsByClassName()
-- ✅ getElementsByTagName()
-- ✅ querySelector()
-- ✅ querySelectorAll()
-- ✅ getAttribute()
-- ✅ setAttribute()
-- ✅ Updating images dynamically
-- ✅ HTMLCollection vs NodeList
-- ✅ Common mistakes and fixes
-- ✅ Best practices
-- ✅ Frequently asked interview questions
+---
 
-# Event Handling in JavaScript
+## Dynamic DOM Manipulation
 
-An **event** is an action performed by the user or browser.
+```javascript
+const li = document.createElement("li");
+
+li.textContent = "JavaScript";
+
+document.querySelector("ul").appendChild(li);
+```
+
+---
+
+# 15. Events & Event Handling
+
+An event is an action detected by the browser.
 
 Examples:
 
-- Mouse Click
-- Double Click
-- Keyboard Press
-- Form Submit
-- Scroll
-- Resize
-- Mouse Hover
-- Input Change
-
-JavaScript listens for these events and executes a function when they occur.
+* `click`
+* `dblclick`
+* `input`
+* `change`
+* `submit`
+* `keydown`
+* `keyup`
+* `mouseenter`
+* `mouseleave`
+* `scroll`
+* `resize`
 
 ---
 
-# addEventListener()
-
-The recommended way to handle events.
-
-## Syntax
-
-```javascript
-element.addEventListener("event", callbackFunction);
-```
-
-Example
+## addEventListener()
 
 ```javascript
 const button = document.querySelector("button");
 
 button.addEventListener("click", () => {
-    console.log("Button Clicked!");
-});
-```
-
-Output
-
-```
-Button Clicked!
-```
-
----
-
-# Click Event
-
-Your project contains two buttons:
-
-```javascript
-let change = document.querySelector(".b1");
-let reset = document.querySelector(".b2");
-```
-
-One button changes the background color.
-
-The other resets it.
-
----
-
-# Background Color Toggle
-
-Your Code
-
-```javascript
-function changebg() {
-
-    if (document.body.style.backgroundColor == "red") {
-
-        document.body.style.backgroundColor = "white";
-
-    } else {
-
-        document.body.style.backgroundColor = "red";
-
-    }
-
-}
-```
-
-Explanation
-
-Initially
-
-```
-white
-```
-
-↓
-
-Click button
-
-```
-red
-```
-
-↓
-
-Click again
-
-```
-white
-```
-
-↓
-
-Click again
-
-```
-red
-```
-
-This is called **toggle behavior**.
-
----
-
-# Reset Background
-
-```javascript
-function resetbg() {
-
-    document.body.style.backgroundColor = "white";
-
-}
-```
-
-Whenever Reset is clicked,
-
-the background becomes white.
-
----
-
-# Connecting Events
-
-```javascript
-change.addEventListener("click", changebg);
-
-reset.addEventListener("click", resetbg);
-```
-
-Flow
-
-```
-User Clicks
-
-↓
-
-Button
-
-↓
-
-Event Listener
-
-↓
-
-Function Executes
-
-↓
-
-Background Changes
-```
-
----
-
-# Anonymous Function
-
-Instead of creating a separate function
-
-```javascript
-button.addEventListener("click", function () {
-
     console.log("Clicked");
-
 });
 ```
 
 ---
 
-# Arrow Function
+## Why Use addEventListener()?
 
-Modern approach
+It is generally preferred over inline event handlers and the `onclick` property because it:
+
+* Separates JavaScript from HTML
+* Supports multiple listeners for the same event
+* Works well with modern event-driven code
+* Makes event management more flexible
+
+---
+
+## onclick vs addEventListener()
+
+### onclick
+
+```javascript
+button.onclick = () => {
+    console.log("Clicked");
+};
+```
+
+### addEventListener()
 
 ```javascript
 button.addEventListener("click", () => {
-
     console.log("Clicked");
-
 });
+```
+
+Multiple listeners can be registered:
+
+```javascript
+button.addEventListener("click", firstHandler);
+button.addEventListener("click", secondHandler);
 ```
 
 ---
 
-# Event Object
-
-Every event listener receives an event object.
-
-Example
+## Event Object
 
 ```javascript
-button.addEventListener("click", (event) => {
-
+button.addEventListener("click", event => {
     console.log(event);
-
 });
 ```
 
-Useful properties
+Useful properties include:
 
 ```javascript
 event.target
-
+event.currentTarget
 event.type
-
-event.clientX
-
-event.clientY
-
 event.key
+event.clientX
+event.clientY
 ```
 
 ---
 
-# Mouse Events
+# 16. Event Bubbling, Capturing & Delegation
 
-```javascript
-click
+## Event Bubbling
 
-dblclick
+Events normally propagate from the target toward ancestors.
 
-mousedown
-
-mouseup
-
-mouseenter
-
-mouseleave
-
-mousemove
-
-contextmenu
-```
-
-Example
-
-```javascript
-button.addEventListener("dblclick", () => {
-
-    console.log("Double Click");
-
-});
+```text
+Button
+   ↓
+Div
+   ↓
+Body
+   ↓
+Document
 ```
 
 ---
 
-# Keyboard Events
+## Event Capturing
+
+Capturing travels from ancestors toward the target.
+
+```text
+Document
+   ↓
+Body
+   ↓
+Div
+   ↓
+Button
+```
+
+Enable capturing:
 
 ```javascript
-keydown
-
-keyup
-
-keypress (deprecated)
-```
-
-Example
-
-```javascript
-document.addEventListener("keydown", (event) => {
-
-    console.log(event.key);
-
-});
-```
-
-Press
-
-```
-A
-```
-
-Output
-
-```
-a
+element.addEventListener("click", handler, true);
 ```
 
 ---
 
-# Input Events
+## stopPropagation()
 
-Example
-
-```javascript
-const input = document.querySelector("input");
-
-input.addEventListener("input", (event) => {
-
-    console.log(event.target.value);
-
-});
-```
-
-Every key press updates the value.
-
----
-
-# preventDefault()
-
-Stops the browser's default behavior.
-
-Example
+Stops further propagation of the event.
 
 ```javascript
-const form = document.querySelector("form");
-
-form.addEventListener("submit", (event) => {
-
-    event.preventDefault();
-
-    console.log("Form Submitted");
-
-});
-```
-
-Without
-
-```javascript
-preventDefault()
-```
-
-the page reloads.
-
----
-
-# stopPropagation()
-
-Stops the event from bubbling to parent elements.
-
-Example
-
-```javascript
-child.addEventListener("click", (event) => {
-
+child.addEventListener("click", event => {
     event.stopPropagation();
-
 });
 ```
 
 ---
 
-# Event Bubbling
+## Event Delegation
 
-Default behavior.
-
-```
-Button
-
-↓
-
-Div
-
-↓
-
-Body
-
-↓
-
-Document
-```
-
-The event travels upward.
-
----
-
-# Event Capturing
-
-Opposite of bubbling.
-
-```
-Document
-
-↓
-
-Body
-
-↓
-
-Div
-
-↓
-
-Button
-```
-
-Enable capturing
-
-```javascript
-button.addEventListener("click", demo, true);
-```
-
----
-
-# Event Delegation
-
-Instead of attaching listeners to many elements,
-
-attach one listener to their parent.
-
-Example
+Instead of attaching listeners to every child, attach one listener to a parent.
 
 ```javascript
 const list = document.querySelector("ul");
 
-list.addEventListener("click", (event) => {
-
-    if (event.target.tagName === "LI") {
-
+list.addEventListener("click", event => {
+    if (event.target.matches("li")) {
         console.log(event.target.textContent);
-
     }
-
 });
 ```
 
-Advantages
+Advantages:
 
-- Better performance
-- Less memory usage
-- Works for dynamically added elements
+* Fewer event listeners
+* Works with dynamically added elements
+* Useful for large lists
 
 ---
 
-# removeEventListener()
-
-Removes an event listener.
+## removeEventListener()
 
 ```javascript
-function clickHandler() {
-
+function handleClick() {
     console.log("Clicked");
-
 }
 
-button.addEventListener("click", clickHandler);
+button.addEventListener("click", handleClick);
 
-button.removeEventListener("click", clickHandler);
+button.removeEventListener("click", handleClick);
+```
+
+The same function reference must be used to remove the listener.
+
+---
+
+# 17. Forms & Form Validation
+
+Forms collect user input.
+
+```html
+<form id="signupForm">
+    <input id="email" type="email" required>
+    <button type="submit">Submit</button>
+</form>
 ```
 
 ---
 
-# Best Practices
-
-### Cache DOM Elements
-
-❌ Bad
+## Handling Form Submission
 
 ```javascript
-document.querySelector(".btn").style.color = "red";
+const form = document.querySelector("#signupForm");
 
-document.querySelector(".btn").style.background = "blue";
-```
+form.addEventListener("submit", event => {
+    event.preventDefault();
 
-✅ Good
-
-```javascript
-const button = document.querySelector(".btn");
-
-button.style.color = "red";
-
-button.style.background = "blue";
+    console.log("Form submitted");
+});
 ```
 
 ---
 
-### Use Meaningful Variable Names
-
-❌
+## Basic Validation
 
 ```javascript
-let a = document.querySelector("button");
+const email = document.querySelector("#email");
+
+if (!email.value) {
+    console.log("Email is required");
+}
 ```
 
-✅
+HTML also provides built-in validation:
 
-```javascript
-const submitButton = document.querySelector(".submit-btn");
+```html
+<input
+    type="email"
+    required
+    minlength="5"
+>
 ```
 
 ---
 
-### Prefer `const`
+# 18. Browser Storage
 
-Use `const` whenever the variable is not reassigned.
+Browsers provide several ways to store data.
+
+## localStorage
+
+Data remains after the browser is closed.
+
+```javascript
+localStorage.setItem("name", "Amar");
+
+console.log(localStorage.getItem("name"));
+
+localStorage.removeItem("name");
+```
+
+---
+
+## sessionStorage
+
+Data is associated with the current browser tab/session.
+
+```javascript
+sessionStorage.setItem("name", "Amar");
+```
+
+---
+
+## Cookies
+
+Cookies are small pieces of data associated with a website.
+
+```javascript
+document.cookie = "username=Amar";
+```
+
+Cookies can have attributes such as:
+
+* `Expires`
+* `Max-Age`
+* `Path`
+* `Secure`
+* `SameSite`
+
+Server-set cookies can also use `HttpOnly`, which prevents JavaScript from reading them.
+
+---
+
+## localStorage vs sessionStorage vs Cookies
+
+| Feature                               | localStorage           | sessionStorage      | Cookies                        |
+| ------------------------------------- | ---------------------- | ------------------- | ------------------------------ |
+| Persists after browser close          | Usually yes            | No                  | Depends on expiration          |
+| Sent automatically with HTTP requests | No                     | No                  | Yes                            |
+| Accessible through JS                 | Yes                    | Yes                 | Usually yes, except `HttpOnly` |
+| Storage size                          | Larger than cookies    | Larger than cookies | Small                          |
+| Typical use                           | Persistent client data | Tab/session data    | Server/client state            |
+
+Do not store highly sensitive information in browser storage without understanding the security implications.
+
+---
+
+# 19. Synchronous JavaScript
+
+Synchronous code executes one operation at a time.
+
+```javascript
+console.log("A");
+console.log("B");
+console.log("C");
+```
+
+Output:
+
+```text
+A
+B
+C
+```
+
+The next statement normally waits for the previous statement to complete.
+
+---
+
+# 20. Asynchronous JavaScript
+
+Asynchronous programming allows JavaScript applications to handle operations that complete later without blocking the entire flow of execution.
+
+Common asynchronous APIs include:
+
+* Timers
+* Network requests
+* DOM events
+* Promises
+* `fetch()`
+
+Example:
+
+```javascript
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Async");
+}, 1000);
+
+console.log("End");
+```
+
+Output:
+
+```text
+Start
+End
+Async
+```
+
+---
+
+# 21. Callbacks & Callback Hell
+
+A callback is a function passed to another function to be executed later.
+
+```javascript
+function greet(name, callback) {
+    console.log("Hello " + name);
+
+    callback();
+}
+
+greet("Amar", () => {
+    console.log("Callback executed");
+});
+```
+
+---
+
+## Callback Hell
+
+Nested callbacks can become difficult to read and maintain.
+
+```javascript
+doTask1(() => {
+    doTask2(() => {
+        doTask3(() => {
+            doTask4(() => {
+                console.log("Done");
+            });
+        });
+    });
+});
+```
+
+---
+
+## Problems with Callback-Based Code
+
+### 1. Inversion of Control
+
+You pass control of when/how a callback executes to another function.
+
+### 2. Callback Hell
+
+Deep nesting makes code difficult to understand and maintain.
+
+Promises and async/await provide cleaner patterns for many asynchronous workflows.
+
+---
+
+# 22. Timers
+
+## setTimeout()
+
+Executes a callback after at least the specified delay once the call stack is available.
+
+```javascript
+setTimeout(() => {
+    console.log("Hello");
+}, 1000);
+```
+
+---
+
+## setInterval()
+
+Repeats a callback approximately according to the specified interval.
+
+```javascript
+const id = setInterval(() => {
+    console.log("Running");
+}, 1000);
+```
+
+Stop it:
+
+```javascript
+clearInterval(id);
+```
+
+---
+
+## clearTimeout()
+
+```javascript
+const id = setTimeout(() => {
+    console.log("Hello");
+}, 3000);
+
+clearTimeout(id);
+```
+
+---
+
+## setTimeout() vs setInterval()
+
+| setTimeout()                           | setInterval()                           |
+| -------------------------------------- | --------------------------------------- |
+| Runs once                              | Repeats                                 |
+| Can be cancelled with `clearTimeout()` | Can be cancelled with `clearInterval()` |
+| Useful for delayed tasks               | Useful for repeated tasks               |
+
+Important: timers do not guarantee exact execution time. They schedule callbacks to run no earlier than the specified delay, subject to the runtime and event loop.
+
+---
+
+# 23. Promises
+
+A Promise represents the eventual result of an asynchronous operation.
+
+A Promise has three main states:
+
+```text
+Pending
+   ↓
+Fulfilled
+
+or
+
+Pending
+   ↓
+Rejected
+```
+
+---
+
+## Creating a Promise
+
+```javascript
+const promise = new Promise((resolve, reject) => {
+    const success = true;
+
+    if (success) {
+        resolve("Success");
+    } else {
+        reject("Failed");
+    }
+});
+```
+
+---
+
+## Consuming a Promise
+
+```javascript
+promise
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+```
+
+---
+
+## then()
+
+Runs when the Promise is fulfilled.
+
+```javascript
+promise.then(result => {
+    console.log(result);
+});
+```
+
+---
+
+## catch()
+
+Handles rejection.
+
+```javascript
+promise.catch(error => {
+    console.error(error);
+});
+```
+
+---
+
+## finally()
+
+Runs regardless of fulfillment or rejection.
+
+```javascript
+promise.finally(() => {
+    console.log("Finished");
+});
+```
+
+---
+
+# 24. Promise Methods
+
+JavaScript provides several useful Promise combinators.
+
+## Promise.all()
+
+Waits for all promises to fulfill.
+
+If one rejects, the returned Promise rejects.
+
+```javascript
+Promise.all([
+    promise1,
+    promise2,
+    promise3
+])
+.then(results => {
+    console.log(results);
+})
+.catch(error => {
+    console.log(error);
+});
+```
+
+---
+
+## Promise.allSettled()
+
+Waits for all promises to settle, regardless of whether they fulfill or reject.
+
+```javascript
+Promise.allSettled([
+    promise1,
+    promise2,
+    promise3
+])
+.then(results => {
+    console.log(results);
+});
+```
+
+---
+
+## Promise.race()
+
+Settles when the first input Promise settles.
+
+```javascript
+Promise.race([
+    promise1,
+    promise2
+])
+.then(result => {
+    console.log(result);
+});
+```
+
+---
+
+## Promise.any()
+
+Fulfills when the first input Promise fulfills.
+
+It rejects only if all input promises reject.
+
+```javascript
+Promise.any([
+    promise1,
+    promise2,
+    promise3
+])
+.then(result => {
+    console.log(result);
+})
+.catch(error => {
+    console.log(error);
+});
+```
+
+---
+
+## Promise Methods Comparison
+
+| Method                 | Resolves when          | Rejects when                               |
+| ---------------------- | ---------------------- | ------------------------------------------ |
+| `Promise.all()`        | All fulfill            | Any rejects                                |
+| `Promise.allSettled()` | All settle             | Does not reject because of input rejection |
+| `Promise.race()`       | First Promise settles  | First settled Promise rejects              |
+| `Promise.any()`        | First Promise fulfills | All reject                                 |
+
+---
+
+# 25. Fetch API
+
+`fetch()` is used to make HTTP requests.
+
+```javascript
+fetch("https://example.com/data")
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+
+---
+
+## Important Fetch Concept
+
+`fetch()` returns a Promise.
+
+The first `.then()` receives a `Response` object, not the final JSON data.
+
+```javascript
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    });
+```
+
+`response.json()` also returns a Promise.
+
+Conceptually:
+
+```text
+fetch()
+   ↓
+Promise<Response>
+   ↓
+response.json()
+   ↓
+Promise<JavaScript Value>
+```
+
+---
+
+# 26. Async & Await
+
+`async` and `await` provide a cleaner syntax for working with Promises.
+
+```javascript
+async function getData() {
+    const response = await fetch("https://example.com/data");
+
+    const data = await response.json();
+
+    console.log(data);
+}
+
+getData();
+```
+
+An `async` function always returns a Promise.
+
+---
+
+## Await
+
+`await` pauses execution of the current async function until the Promise settles.
+
+It does not block the JavaScript thread in the same way a synchronous blocking operation would.
+
+---
+
+# 27. Error Handling
+
+## Promise Error Handling
+
+```javascript
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+
+---
+
+## try...catch
+
+```javascript
+try {
+    const result = JSON.parse("invalid json");
+} catch (error) {
+    console.error(error);
+}
+```
+
+---
+
+## Async/Await Error Handling
+
+```javascript
+async function getData() {
+    try {
+        const response = await fetch(url);
+
+        const data = await response.json();
+
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+```
+
+---
+
+## finally
+
+```javascript
+try {
+    console.log("Running");
+} catch (error) {
+    console.log(error);
+} finally {
+    console.log("Finished");
+}
+```
+
+---
+
+# 28. Event Loop
+
+JavaScript execution involves concepts such as:
+
+* Call Stack
+* Web APIs / Host APIs
+* Task Queue
+* Microtask Queue
+* Event Loop
+
+Example:
+
+```javascript
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Timeout");
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("Promise");
+});
+
+console.log("End");
+```
+
+Output:
+
+```text
+Start
+End
+Promise
+Timeout
+```
+
+Why?
+
+```text
+Synchronous code
+      ↓
+Call Stack
+      ↓
+Microtasks
+      ↓
+Tasks
+```
+
+Promise callbacks are microtasks, while timer callbacks are tasks/macrotasks. After the current synchronous work finishes, the runtime processes queued microtasks before moving on to the next task.
+
+---
+
+# 29. This Keyword
+
+`this` refers to a value determined by how a function is called.
+
+Example:
+
+```javascript
+const user = {
+    name: "Amar",
+
+    greet() {
+        console.log(this.name);
+    }
+};
+
+user.greet();
+```
+
+Output:
+
+```text
+Amar
+```
+
+---
+
+## Arrow Functions and this
+
+Arrow functions do not create their own `this`.
+
+```javascript
+const user = {
+    name: "Amar",
+
+    greet: () => {
+        console.log(this.name);
+    }
+};
+```
+
+For object methods, regular method syntax is generally used when you need `this` to refer to the object.
+
+---
+
+# 30. call(), apply() & bind()
+
+These methods allow explicit control over `this` for regular functions.
+
+## call()
+
+Arguments are passed individually.
+
+```javascript
+function greet(city) {
+    console.log(this.name, city);
+}
+
+const user = {
+    name: "Amar"
+};
+
+greet.call(user, "Kanpur");
+```
+
+---
+
+## apply()
+
+Arguments are passed as an array-like value.
+
+```javascript
+greet.apply(user, ["Kanpur"]);
+```
+
+---
+
+## bind()
+
+Returns a new function with `this` and optionally some arguments bound.
+
+```javascript
+const newGreet = greet.bind(user, "Kanpur");
+
+newGreet();
+```
+
+---
+
+## call() vs apply() vs bind()
+
+| Method    | Executes immediately | Arguments              |
+| --------- | -------------------- | ---------------------- |
+| `call()`  | Yes                  | Individual             |
+| `apply()` | Yes                  | Array-like             |
+| `bind()`  | No                   | Returns a new function |
+
+---
+
+# 31. Throttling & Debouncing
+
+These techniques control how frequently functions execute.
+
+## Debouncing
+
+Runs the function after the event stops occurring for a specified time.
+
+Useful for:
+
+* Search input
+* Auto-save
+* Resize handling
+
+```javascript
+function debounce(callback, delay) {
+    let timer;
+
+    return (...args) => {
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+            callback(...args);
+        }, delay);
+    };
+}
+```
+
+---
+
+## Throttling
+
+Limits execution to at most approximately once per specified interval.
+
+Useful for:
+
+* Scroll events
+* Mouse movement
+* Window resize
+* Continuous user interactions
+
+```javascript
+function throttle(callback, delay) {
+    let waiting = false;
+
+    return (...args) => {
+        if (waiting) {
+            return;
+        }
+
+        callback(...args);
+
+        waiting = true;
+
+        setTimeout(() => {
+            waiting = false;
+        }, delay);
+    };
+}
+```
+
+---
+
+## Debounce vs Throttle
+
+| Debounce                   | Throttle                         |
+| -------------------------- | -------------------------------- |
+| Waits until activity stops | Limits execution frequency       |
+| Good for search            | Good for scrolling               |
+| Executes after inactivity  | Executes at controlled intervals |
+
+---
+
+# 32. Modern JavaScript Best Practices
+
+## Prefer const
 
 ```javascript
 const user = {
@@ -3097,275 +2577,309 @@ const user = {
 };
 ```
 
+Use `let` when reassignment is required.
+
 ---
 
-### Keep Functions Small
+## Avoid unnecessary var
 
-❌
+Prefer:
 
 ```javascript
-function everything() {
-    // hundreds of lines
-}
+const
+let
 ```
 
-✅
+over:
 
 ```javascript
-function changeBackground() {}
-
-function resetBackground() {}
-
-function updateImage() {}
+var
 ```
 
 ---
 
-### Separate HTML, CSS, and JavaScript
+## Use strict equality
 
-Project structure
+Prefer:
 
+```javascript
+a === b;
 ```
+
+over:
+
+```javascript
+a == b;
+```
+
+when you want to avoid implicit type coercion.
+
+---
+
+## Use meaningful variable names
+
+Instead of:
+
+```javascript
+const x = document.querySelector("button");
+```
+
+Prefer:
+
+```javascript
+const submitButton = document.querySelector("button");
+```
+
+---
+
+## Keep Functions Small
+
+Prefer focused functions:
+
+```javascript
+function validateForm() {}
+
+function submitForm() {}
+
+function resetForm() {}
+```
+
+instead of one huge function.
+
+---
+
+## Separate HTML, CSS and JavaScript
+
+Recommended structure:
+
+```text
 project/
 │
 ├── index.html
+│
 ├── css/
 │   └── style.css
+│
 ├── js/
 │   └── script.js
+│
 ├── images/
+│
 └── README.md
 ```
 
 ---
 
-# Common Mistakes
+# 33. Common Interview Questions
 
-### Forgetting `.` for Class Selectors
+## What is hoisting?
 
-❌
-
-```javascript
-document.querySelector("button");
-```
-
-This selects the first `<button>` element.
-
-To select a class:
-
-```javascript
-document.querySelector(".button");
-```
+Hoisting describes how JavaScript processes declarations before execution. `var` declarations are initialized to `undefined`; `let` and `const` remain in the TDZ until their declaration is evaluated; function declarations can be called before their declaration in the same scope.
 
 ---
 
-### Forgetting `#` for ID Selectors
+## What is TDZ?
 
-❌
-
-```javascript
-document.querySelector("header");
-```
-
-If the HTML is
-
-```html
-<div id="header"></div>
-```
-
-Correct
-
-```javascript
-document.querySelector("#header");
-```
+The Temporal Dead Zone is the period in which a `let`, `const`, or `class` binding exists but cannot be accessed before its declaration is evaluated.
 
 ---
 
-### Using `innerHTML` Unnecessarily
+## What is closure?
 
-Prefer
-
-```javascript
-textContent
-```
-
-when inserting plain text.
-
-It is safer and faster.
+A closure allows a function to retain access to variables from its lexical scope.
 
 ---
 
-# Mini Project Flow
+## What is a higher-order function?
 
-```
-Page Loads
-
-↓
-
-Buttons Selected
-
-↓
-
-Click Event Registered
-
-↓
-
-User Clicks
-
-↓
-
-Background Changes
-
-↓
-
-Reset Button Restores White Background
-```
+A function that accepts a function, returns a function, or both.
 
 ---
 
-# JavaScript Topics Covered
+## Why is map() a higher-order function?
 
-## ES6
-
-- Arrow Functions
-- Rest Operator
-- Spread Operator
-- Destructuring
-- Optional Chaining
+Because `map()` accepts a callback function.
 
 ---
 
-## Functions
+## Difference between map() and forEach()?
 
-- Function Declaration
-- Function Expression
-- Closures
-- Higher Order Functions
-- IIFE
+`map()` creates and returns a new array. `forEach()` returns `undefined` and is normally used for side effects.
 
 ---
 
-## Arrays
+## Difference between filter() and find()?
 
-- push()
-- pop()
-- shift()
-- unshift()
-- splice()
-- slice()
-- sort()
-- reverse()
-- includes()
-- map()
-- filter()
-- reduce()
-- some()
-- every()
-- find()
-- findIndex()
-- forEach()
-- for...of
+`filter()` returns all matching elements in an array. `find()` returns the first matching element.
 
 ---
 
-## Objects
+## Difference between slice() and splice()?
 
-- Object Creation
-- Object.assign()
-- Spread Operator
-- Nested Objects
-- Optional Chaining
-- Object.keys()
-- Object.values()
-- Object.entries()
-- JSON.stringify()
-- JSON.parse()
-- Object.freeze()
+`slice()` does not modify the original array. `splice()` modifies it.
 
 ---
 
-## DOM
+## What is the Event Loop?
 
-- getElementById()
-- getElementsByClassName()
-- getElementsByTagName()
-- querySelector()
-- querySelectorAll()
-- getAttribute()
-- setAttribute()
+The Event Loop coordinates synchronous JavaScript execution with queued asynchronous callbacks and microtasks.
 
 ---
 
-## Events
+## Why does Promise callback execute before setTimeout(..., 0)?
 
-- addEventListener()
-- Click Events
-- Keyboard Events
-- Mouse Events
-- Event Object
-- preventDefault()
-- stopPropagation()
-- Event Bubbling
-- Event Capturing
-- Event Delegation
-- removeEventListener()
+Promise reactions are microtasks, while timer callbacks are tasks. Microtasks are processed after the current synchronous work and before the next task.
 
 ---
 
-# Interview Cheat Sheet
+## What is callback hell?
 
-| Topic | Key Point |
-|--------|-----------|
-| Closure | Inner function remembers outer variables |
-| IIFE | Executes immediately after definition |
-| Rest Operator | Collects arguments into an array |
-| Spread Operator | Expands arrays/objects |
-| Shallow Copy | Copies first level only |
-| Deep Copy | Creates an independent copy |
-| `map()` | Returns a transformed array |
-| `filter()` | Returns matching elements |
-| `reduce()` | Returns a single accumulated value |
-| `find()` | Returns the first matching element |
-| `findIndex()` | Returns the index of the first match |
-| `some()` | `true` if at least one element matches |
-| `every()` | `true` only if all elements match |
-| `querySelector()` | Returns the first matching element |
-| `querySelectorAll()` | Returns all matching elements |
-| `addEventListener()` | Attaches an event listener |
-| `preventDefault()` | Prevents default browser behavior |
-| `stopPropagation()` | Stops event bubbling |
+Deeply nested callback-based asynchronous code that becomes difficult to read and maintain.
 
 ---
 
-# How to Run
+## What is inversion of control?
 
-1. Clone the repository:
+When a function gives another function control over when/how a callback will be invoked.
+
+---
+
+## What does fetch() return?
+
+`fetch()` returns a Promise that fulfills with a `Response` object.
+
+---
+
+## Why do we use response.json()?
+
+Because `response.json()` reads and parses the response body as JSON and itself returns a Promise.
+
+---
+
+## What is async/await?
+
+Syntax built on top of Promises that makes asynchronous code easier to read and write.
+
+---
+
+## Difference between localStorage and sessionStorage?
+
+`localStorage` persists across browser sessions, while `sessionStorage` is associated with the current tab/session.
+
+---
+
+## Difference between call(), apply() and bind()?
+
+`call()` and `apply()` invoke a function immediately with a chosen `this`; `bind()` returns a new function with a chosen `this`.
+
+---
+
+# 34. JavaScript Cheat Sheet
+
+| Topic                  | Key Point                                             |
+| ---------------------- | ----------------------------------------------------- |
+| `var`                  | Function-scoped variable                              |
+| `let`                  | Block-scoped variable                                 |
+| `const`                | Block-scoped binding that cannot be reassigned        |
+| Hoisting               | Declaration processing before execution               |
+| TDZ                    | Restricted access before `let`/`const` initialization |
+| Dynamic Typing         | Variables can hold values of different types          |
+| Type Coercion          | Automatic type conversion                             |
+| Ternary                | Short conditional expression                          |
+| Closure                | Function remembers lexical variables                  |
+| IIFE                   | Immediately executed function expression              |
+| HOF                    | Function accepting/returning functions                |
+| Rest                   | Collects values                                       |
+| Spread                 | Expands values                                        |
+| `map()`                | Transforms into a new array                           |
+| `filter()`             | Returns matching elements                             |
+| `find()`               | Returns first match                                   |
+| `reduce()`             | Produces an accumulated result                        |
+| `forEach()`            | Iterates for side effects                             |
+| `slice()`              | Non-mutating extraction                               |
+| `splice()`             | Mutating insert/delete/replace                        |
+| Shallow Copy           | Nested references can remain shared                   |
+| Deep Copy              | Nested structures are independently copied            |
+| Destructuring          | Extracts values from arrays/objects                   |
+| Optional Chaining      | Safely accesses nested values                         |
+| DOM                    | Object representation of HTML                         |
+| `querySelector()`      | First CSS-selector match                              |
+| `querySelectorAll()`   | All CSS-selector matches                              |
+| `textContent`          | Text content                                          |
+| `innerText`            | Rendered text behavior                                |
+| `innerHTML`            | HTML markup                                           |
+| Event Listener         | Responds to browser events                            |
+| Bubbling               | Event travels toward ancestors                        |
+| Capturing              | Event travels from ancestors toward target            |
+| Delegation             | Parent handles child events                           |
+| `localStorage`         | Persistent browser storage                            |
+| `sessionStorage`       | Tab/session storage                                   |
+| Callback               | Function passed for later execution                   |
+| Promise                | Represents eventual async result                      |
+| `Promise.all()`        | All must fulfill                                      |
+| `Promise.allSettled()` | Waits for all to settle                               |
+| `Promise.race()`       | First settled Promise                                 |
+| `Promise.any()`        | First fulfilled Promise                               |
+| `async`                | Function returns a Promise                            |
+| `await`                | Waits for a Promise inside async function             |
+| Event Loop             | Coordinates queued async work                         |
+| `setTimeout()`         | Schedules one callback                                |
+| `setInterval()`        | Repeatedly schedules callbacks                        |
+| `this`                 | Determined by function invocation/context             |
+| `call()`               | Invoke with explicit `this`                           |
+| `apply()`              | Invoke with explicit `this` and array-like args       |
+| `bind()`               | Returns function with bound `this`                    |
+| Debounce               | Execute after activity stops                          |
+| Throttle               | Limit execution frequency                             |
+
+---
+
+# 35. How to Run
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/your-username/javascript-fundamentals.git
 ```
 
-2. Open the project folder.
+Open the project folder:
 
-3. Open `index.html` in your browser.
+```bash
+cd javascript-fundamentals
+```
 
-4. Open Developer Tools (`F12`) and view the **Console** to see outputs.
+Open:
+
+```text
+index.html
+```
+
+in a browser.
+
+Open Developer Tools:
+
+```text
+F12
+```
+
+Then open the **Console** to view JavaScript output.
 
 ---
 
-# Contributing
+# 36. Contributing
 
 Contributions are welcome!
 
 1. Fork the repository.
 2. Create a feature branch.
-3. Commit your changes.
-4. Push the branch.
-5. Open a Pull Request.
+3. Add or improve examples.
+4. Commit your changes.
+5. Push the branch.
+6. Open a Pull Request.
 
 ---
 
-# License
+# 37. License
 
 This project is licensed under the **MIT License**.
 
@@ -3375,12 +2889,59 @@ This project is licensed under the **MIT License**.
 
 **Amar**
 
-Learning and practicing modern JavaScript, ES6, and DOM concepts through hands-on examples.
+Learning and practicing JavaScript fundamentals, ES6+, DOM manipulation, asynchronous JavaScript, and browser APIs through hands-on examples.
 
 ---
 
 # Conclusion
 
-This repository serves as a practical reference for learning JavaScript fundamentals, ES6 features, array methods, object manipulation, DOM APIs, and event handling. Each example is designed to be simple, easy to understand, and useful for both beginners and interview preparation.
+This repository is designed as a practical JavaScript learning roadmap covering the most important concepts from beginner to intermediate level.
+
+The roadmap includes:
+
+* JavaScript fundamentals
+* Variables and scope
+* Hoisting and TDZ
+* Data types
+* Type coercion and conversion
+* Operators
+* Functions
+* Arrow functions
+* Rest and spread
+* Higher-order functions
+* IIFE
+* Lexical scoping
+* Closures
+* Pure and impure functions
+* Execution contexts
+* Call stack
+* Arrays
+* Objects
+* Destructuring
+* Shallow and deep copying
+* JSON
+* DOM manipulation
+* Events
+* Event bubbling and capturing
+* Event delegation
+* Forms and validation
+* Browser storage
+* Synchronous JavaScript
+* Asynchronous JavaScript
+* Callbacks
+* Callback hell
+* Timers
+* Promises
+* Promise combinators
+* Fetch API
+* Async/await
+* Error handling
+* Event Loop
+* `this`
+* `call()`, `apply()`, and `bind()`
+* Debouncing
+* Throttling
+
+The goal is to understand not only **what JavaScript features do**, but also **how JavaScript executes code and handles asynchronous operations in the browser**.
 
 Happy Coding! 🚀
